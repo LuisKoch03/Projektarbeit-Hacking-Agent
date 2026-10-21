@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "projektarbeit-hacking-agent"
+version = "0.1.0"
+description = "A small LangChain-based agent framework for the project work."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=1.0.0,<2.0.0",
+    "langchain-openai>=1.0.0,<2.0.0",
+    "openai>=2.0.0,<3.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+hacking-agent = "hacking_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
