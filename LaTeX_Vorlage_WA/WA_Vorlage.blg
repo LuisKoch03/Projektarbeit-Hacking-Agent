@@ -1,0 +1,93 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: WA_Vorlage.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: Kapitel/Titelseite.aux
+Reallocating 'name_of_file' (item size: 1) to 25 items.
+A level-1 auxiliary file: Kapitel/Sperrvermerk.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: Kapitel/FZ_Formelzeichen.aux
+Reallocating 'name_of_file' (item size: 1) to 24 items.
+A level-1 auxiliary file: Kapitel/Kurzfassung.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: Kapitel/Abstract.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: Kapitel/Einleitung.aux
+Reallocating 'name_of_file' (item size: 1) to 35 items.
+A level-1 auxiliary file: Kapitel/TheoretischeGrundlagen.aux
+Reallocating 'name_of_file' (item size: 1) to 25 items.
+A level-1 auxiliary file: Kapitel/Loesungswege.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: Kapitel/Ergebnisse.aux
+Reallocating 'name_of_file' (item size: 1) to 28 items.
+A level-1 auxiliary file: Kapitel/Zusammenfassung.aux
+Reallocating 'name_of_file' (item size: 1) to 20 items.
+A level-1 auxiliary file: Anhang/Anhang_A.aux
+Reallocating 'name_of_file' (item size: 1) to 19 items.
+A level-1 auxiliary file: Anhang/Vorlage.aux
+Reallocating 'name_of_file' (item size: 1) to 28 items.
+A level-1 auxiliary file: Anhang/Tipps_und_Tricks.aux
+Reallocating 'name_of_file' (item size: 1) to 19 items.
+The style file: Literatur/alphadin.bst
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+Reallocating 'name_of_file' (item size: 1) to 39 items.
+A level-1 auxiliary file: Kapitel/Eidesstattliche_Erklaerung.aux
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: Literatur/Literaturverzeichnis.bib
+Warning--entry type for "Hajono2010" isn't style-file defined
+--line 215 of file Literatur/Literaturverzeichnis.bib
+Warning--entry type for "Python83" isn't style-file defined
+--line 745 of file Literatur/Literaturverzeichnis.bib
+Warning--entry type for "Lego12" isn't style-file defined
+--line 769 of file Literatur/Literaturverzeichnis.bib
+Warning--entry type for "Watterson2013" isn't style-file defined
+--line 1028 of file Literatur/Literaturverzeichnis.bib
+Warning--entry type for "Kompendium2013" isn't style-file defined
+--line 1074 of file Literatur/Literaturverzeichnis.bib
+Warning--there's a lastchecked date but no url, urn or doi in Kipp2012
+You've used 10 entries,
+            4793 wiz_defined-function locations,
+            972 strings with 8046 characters,
+and the built_in function-call counts, 5387 in all, are:
+= -- 540
+> -- 122
+< -- 107
++ -- 118
+- -- 36
+* -- 330
+:= -- 897
+add.period$ -- 18
+call.type$ -- 10
+change.case$ -- 44
+chr.to.int$ -- 10
+cite$ -- 11
+duplicate$ -- 167
+empty$ -- 449
+format.name$ -- 83
+if$ -- 1144
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 51
+newline$ -- 72
+num.names$ -- 31
+pop$ -- 67
+preamble$ -- 1
+purify$ -- 64
+quote$ -- 0
+skip$ -- 271
+stack$ -- 0
+substring$ -- 394
+swap$ -- 34
+text.length$ -- 26
+text.prefix$ -- 7
+top$ -- 0
+type$ -- 80
+warning$ -- 1
+while$ -- 43
+width$ -- 12
+write$ -- 146
+(There were 6 warnings)

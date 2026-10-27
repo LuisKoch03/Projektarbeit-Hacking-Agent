@@ -1,0 +1,153 @@
+\documentclass[a4paper,12pt,twoside]{article} %Dokumtentklasse Artikel, A4-Format, Schriftgröße 12pt, ACHTUNG: oneside einseitig, twoside für doppelbedruckte Seiten
+
+\usepackage[ngerman]{babel} % Übersetzung der sprachspezifischen Befehle im Dokumente (z.B. Inhaltsverzeichnis statt table of content), richtige Trennung nach der deutschen Rechtschreibung, erleichterte Eingabe von Sonderzeichen
+\usepackage[ansinew,latin1]{inputenc} % Unterstützung erweiterter Eingabe-Zeichensätze z.B. ä, ö, ü usw.
+\usepackage[T1]{fontenc} % für Umlaute
+\usepackage{eurosym} % Euro-Symbol als \euro einbinden
+\usepackage{graphicx} % Paket um Bilder einzufügen
+\usepackage[paper=a4paper, left=35mm, right=30mm, top=30mm, bottom=20mm]{geometry}  % Satzspiegel für wissenschaftl. Arbeit!
+\usepackage{amsmath} % Paket für mathematische Formeln
+%\usepackage{mdwlist} % Zeilenabstand bei Aufzählungen verringern
+%\usepackage[bottom,hang]{footmisc} %Einrückung bei Fußnoten
+%\setlength{\footnotemargin}{0pt} %Einrückung bei Fußnoten
+%\usepackage[hang]{caption2} % mehrzeilige Captions ausrichten
+%\usepackage{float} % u.a. genaue Platzierung von Objekten
+\usepackage{multirow}
+\usepackage{tabularx} %Tabellen sind so groß wie maximal zur Verfügung stehende Breite des Texts
+%================
+
+\renewcommand{\familydefault}{\sfdefault} % serifenlose Schrift
+\renewcommand{\labelitemi}{-} % Spiegelstriche statt Punkten bei Auflistungen
+\renewcommand{\contentsname}{Inhalt} % "`Inhaltsverzeichnis"' in "`Inhalt"' umbenennen
+%\renewcommand{\bibname}{Literatur} % Literaturverzeichnis umbenennen
+\renewcommand{\figurename}{Abb.} % Abbildung umbenennen
+
+\linespread{1,5}\selectfont % aktueller Zeilenabstand wird mit dem Zahlenwert multipliziert
+
+\begin{document}
+%=======================================================================
+\begin{titlepage}
+\vspace*{-2.26cm}
+
+\begin{center}
+{ \vspace*{1 cm}
+ {\textbf{\Large Praktikumsbericht}\\	
+	\vspace*{2 cm}	
+ \textbf{Vorlage zum Verfassen einheitlicher Dokumente mit inhaltlichen und stilistischen Hinweisen}
+ }
+}\end{center}
+
+\vfill
+\small{
+\begin{tabbing}
+\hspace*{6cm}\= \kill 
+ Autor:				\> Anna Günter\\
+ Datum der Abgabe: 			\> 26.~Februar~2013\\
+ Ort der Abgabe: 				\> Lippstadt\\
+ Hochschule:	\> Hochschule Hamm-Lippstadt\\
+ Studiengang: \> Mechatronik 7. Semester\\
+ Betreuender Professor: \> Prof. Dr.-Ing. Ulrich Schneider\\
+\end{tabbing}
+}
+\end{titlepage}
+%===========================================================================
+\newpage
+%========================================================================
+\pagenumbering{Roman} % römische Zahlen als Nummerierung von Deckblatt bis Textteil
+\noindent\Large\textbf{Sperrvermerk}\par
+\vspace*{0.5 cm}
+\normalsize\noindent{Diese Arbeit einschließlich aller ihrer Teile ist urheberrechtlich geschützt.
+Jede Verwertung außerhalb der engen Grenzen des Urheberrechtsgesetzes ist ohne Zustimmung der Verfasserin unzulässig.}\\
+
+\vspace*{1 cm}
+\noindent\Large\textbf{Restricting note}\par
+\vspace*{0.5 cm}
+\normalsize\noindent{This thesis including all its parts is copyrighted.
+Any utilisation outside of the strict limits of the copyright law is illegitimate without the permission of the editor.}\\
+
+\vfill
+Lippstadt, Februar 2013 \hfill \emph{Anna Günter} % handschriftliche Unterschrift hierhin!!
+
+%========================================================================
+\newpage
+\tableofcontents
+%========================================================================
+\newpage
+\include{Kurzfassung}
+
+%========================================================================
+\newpage
+\include{Abstract}
+
+%==============================================================================
+\newpage
+\include{Vorwort}
+
+%========================================================================
+\newpage
+\include{Abbildungsverzeichnis}
+
+%==========================================================================
+\newpage
+\include{Abkuerungsverzeichnis}
+
+%=======================================================
+\newpage
+\pagenumbering{arabic} % arabische Nummerierung der Seiten ab Hauptteil
+\setcounter{page}{1} % setzt die Seitennummerierung ab 1 an
+\include{Einleitung}
+
+%========================================================================
+\newpage
+\input{VersuchAzumThemaxyz}
+
+%========================================================================
+\newpage
+\include{TheoretischeGrundlagen}
+
+%========================================================================
+\newpage
+\include{Aufgabenstellung}
+
+%========================================================================
+\include{Versuchsvorbereitung}
+
+%========================================================================
+\include{Versuchsdurchführung}
+
+%========================================================================
+\include{Versuchsauswertung}
+
+%========================================================================
+\newpage
+\include{BewertungdesPraktikums}
+
+%=========================================================================
+\newpage
+\include{Literatur}
+  
+%==============================================================================================================
+\newpage
+\appendix
+\section{Anhang}
+\subsection{Versuchs- und Messprotokolle}\footnote{Im Anhang werden ergänzende Dokumente untergebracht, die im Textteil wegen ihres Umfangs keinen Platz gefunden haben.
+Der Anhang darf auf keinen Fall größer als der Umfang des Textteils sein und wird nicht zum Seitenumfang des Textteils hinzugerechnet (vgl. \cite{Balz2008}, S. 198 f.).
+Falls die beigelegten Dokumente nicht gebunden werden sollen, können sie in eine separate Mappe eingelegt oder auf einem Datenträger abgegeben werden.
+In diesem Fall sollte ein Vermerk wie "`(in separatem Ordner)"' oder "`(als CD-Rom angefügt)"' im Anhang hinzugefügt werden.
+}
+\label{lab:Messprot}
+
+%=========================================================================
+\newpage
+\pagenumbering{gobble} %Seitennummerierung wird unterdrückt
+\noindent
+Ich versichere hiermit, dass ich die vorliegende Arbeit selbstständig und nur unter Benutzung der angegebenen Literatur und Hilfsmittel angefertigt habe.
+Wörtlich übernommene Sätze und Satzteile sind als Zitate belegt, andere Anlehnungen hinsichtlich Aussage und Umfang unter Quellenangabe kenntlich gemacht.
+Die Arbeit hat in gleicher oder ähnlicher Form noch keiner Prüfungsbehörde vorgelegen und ist auch noch nicht veröffentlicht.
+
+%An das Ende jeder Bachelorarbeit ist die Eidesstaatliche Versicherung auf eine gesonderte Seite zu setzen -> HSHL-Vorgabe!!
+
+\vfill
+Lippstadt, Februar 2013 \hfill \emph{Anna Günter} % handschriftliche Unterschrift hierhin!!
+%=========================================================================
+\end{document}

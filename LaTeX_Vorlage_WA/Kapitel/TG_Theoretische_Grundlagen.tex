@@ -1,0 +1,667 @@
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Kapitel-----XXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\chapter{Theoretische Grundlagen}
+\label{Kapitel_TG_Theoretische Grundlagen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Sektion-----XXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\section{Fahrdynamik}
+%\label{Sektion_Vorlage}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Subsektion-----XXXXXXXXXXXXXXXXXXXXXXXX
+\subsection{Dynamik des Gesamtfahrzeugs}
+\label{Subsektion_TG_Fahrdyn_Gesamtfzg}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Dieser Abschnitt erläutert die zur Beschreibung der Fahrdynamik
+benötigten Koordinatensysteme und Grundgleichungen. Es werden die in
+Abbildung \ref{Bild_TG_Koordinatensysteme} gezeigten
+Koordinatensysteme in Anlehnung an \cite{ISO8855} definiert, die im
+Abschnitt "`Formelzeichen, Abkürzungen und Koordinatensysteme"'
+aufgelistet sind.
+%///////////////////////////// 2 Bilder nebeneinander ///////////////
+\begin{figure}[!ht]\centering
+ \subfloat[\captionsf{Rückansicht.}]
+    {\label{Bild_TG_Koordinatensysteme_Heckansicht}
+    \includegraphics[width=\BildSubfigureBreite]{Bild_Ersatzbild}}
+ \subfloat[\captionsf{Draufsicht.}]
+    {\label{Bild_TG_Koordinatensysteme_Draufsicht}
+    \includegraphics[width=\BildSubfigureBreite]{Bild_Ersatzbild}}
+ \caption{Koordinatensysteme am Fahrzeug. Quelle: \cite{Goebel2009}.}
+ \label{Bild_TG_Koordinatensysteme}
+\end{figure}
+%////////////////////////////////////////////////////////////////////
+%
+Dabei finden die Winkel aus Tabelle
+\ref{Tabelle_TG_Koordinatentransformation} in der beschriebenen
+Reihenfolge ihre Anwendung. Alle Winkel werden um die jeweilige
+Achse im mathematisch positiven Sinn gezählt (rechte Hand-Regel).
+
+Das Inertialsystem $I$ ist ortsfest, seine $xy$-Ebene ist
+horizontal, das hei{\ss}t senkrecht zum Vektor der Erdbeschleunigung.
+Das horizontierte Koordinatensystem $H$ ist stets an der
+Fahrzeuglängsachse ausgerichtet, dessen $xy$-Ebene ist horizontal
+bezüglich des Inertialsystems. Das Bahnsystem $B$ ist gegenüber dem
+Horizontalsystem um den Schwimmwinkel $\beta$ verdreht, die
+$xy$-Ebene bleibt weiterhin horizontal. Der Ursprung ist der
+Fahrzeugschwerpunkt. Damit liegt der Geschwindigkeitsvektor des
+Fahrzeugschwerpunkts stets auf der $x$-Achse des $B$-Systems. Das
+karosseriefeste System $K$ liegt im Fahrzeugschwerpunkt $C$ und ist
+an der Längs-/Quer- und Hochachse des Fahrzeugs ausgerichtet. Das
+Radsystem $R$ befindet sich im Radmittelpunkt und ist gegenüber dem
+Karosseriesystem um die Verkippungen des Rades gedreht, rotiert
+jedoch nicht mit dem Rad.
+
+Bei der Wahl dieser Koordinatensysteme ist die Annahme getroffen,
+dass die Fahrbahn stets eben, das hei{\ss}t horizontal zum $I$-System,
+ist. Damit entfällt die Einführung eines für eine Berücksichtigung
+einer Fahrbahnverkippung notwendigen Koordinatensystems.
+%
+%-----------------------------Tabelle--------------------------------
+\begin{table}[!ht]
+  \caption{Transformationsschritte zwischen den Koordinatensystemen
+  bei der Annahme einer horizontalen Fahrbahn.}
+  \begin{center}
+  %\renewcommand{\arraystretch}{1}
+  \begin{tabular}{|ccccccccc|}
+  \multicolumn{9}{c}{ }\\
+  \multicolumn{9}{c}{ }\\
+  \multicolumn{9}{c}{ }\\
+  \multicolumn{9}{c}{ }\\
+  \multicolumn{9}{c}{ }\\
+  \omit
+  \ \begin{rotate}{90} \small inertial \end{rotate} &&
+  \begin{rotate}{90} \small horizontiert \end{rotate} &&
+  \begin{rotate}{90} \small bahnfest \end{rotate} &&
+  \begin{rotate}{90} \small karosseriefest \end{rotate} &&
+  \begin{rotate}{90} \small im Rad \end{rotate}\\
+  \multicolumn{9}{c}{ \tiny{} }\\\hline
+  \rowcolor[gray]{0.9}
+  $I$ & $\Longrightarrow$ &
+  $H$ & $\Longrightarrow$ &
+  $B$ & $\Longrightarrow$ &
+  $K$ & $\Longrightarrow$ &
+  $R_i$
+  \\\hline
+  & $\psi$ um $_Iz$
+  & & $\beta$ um $_Hz$
+  & & $\varphi$ um $_Sx$
+  & & $\tau_i$ um $_{K1}y$ &
+  \\%\cline{8-14}
+  &\omit&& \omit && $\theta$ um $_{S1}y$ && $\gamma_i$ um $_Kx$ &
+  \\%\cline{8-14}
+  &\omit&& \omit&& $-\beta$ um $_{S2}z$ && $\delta_i$ um $_{K2}z$ &
+  \\\hline
+  \end{tabular}
+  \end{center}
+  \label{Tabelle_TG_Koordinatentransformation}
+\end{table}
+%--------------------------------------------------------------------
+%
+Bis auf die in Querrichtung vorkommenden Verkippungen um den
+Nickwinkel $\theta$ und den Nachlauf $\tau$ sind alle Winkel in der
+Heckansicht, Abbildung \ref{Bild_TG_Koordinatensysteme_Heckansicht},
+und Draufsicht, Abbildung
+\ref{Bild_TG_Koordinatensysteme_Draufsicht}, dargestellt.
+\\
+
+Die zugehörigen Transformationsmatrizen, mit Hilfe derer z.~B.
+Spaltenmatrizen vom Koordinatensystem $1$  in ein Koordinatensystem
+$2$ nach folgender Gleichung
+\eqref{Gleichung_TG_Transformationsvorschrift} transformiert werden,
+sind Abschnitt \ref{Subsektion_Anhang_Koordinatentransformation} zu
+entnehmen. Aufschluss über die Transformation zwischen den Systemen
+$S$ und $K$ gibt die dort enthaltene Gleichung
+\eqref{Gleichung_Anhang_Signalkondit_Transformation_von_S_nach_K}.
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_TG_Transformationsvorschrift}
+  {}_2\V{a} = ^{21}\M{A} \cdot {}_1\V{a}
+\end{equation}
+%--------------------------------------------------------------------
+\\
+
+Unter Vernachlässigung der absoluten Wank- und Nickraten, was in
+diesem Fall einer Verschiebung des Schwerpunkts auf die
+Fahrwerks-Ebene der Radkoordinatensysteme entspricht, ergeben sich
+folgende radindividuelle Schwimmwinkel:
+%-----------------------------Gleichung------------------------------
+\begin{alignat}{2}
+ \nonumber
+ \beta_1 &= \frac{_Kv_{Cy} + l_v \cdot {}_K\psip}{_Kv_{Cx} + b_r \cdot {}_K\psip} &
+ \qquad
+ \beta_2 &= \frac{_Kv_{Cy} + l_v \cdot {}_K\psip}{_Kv_{Cx} - b_l \cdot {}_K\psip}
+ \\
+ \label{Gleichung_TG_FzgDyn_Schwimmwinkel_radindividuell}
+ \beta_3 &= \frac{_Kv_{Cy} - l_h \cdot {}_K\psip}{_Kv_{Cx} - b_l \cdot {}_K\psip} &
+ \beta_4 &= \frac{_Kv_{Cy} - l_h \cdot {}_K\psip}{_Kv_{Cx} + b_r \cdot {}_K\psip}.
+\end{alignat}
+%--------------------------------------------------------------------
+%
+
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Subsektion--XXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection{Reifeneigenschaften}
+\label{Subsektion_TG_Fahrdyn_Reifen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Die Aufgabe der Kraftübertragung zwischen Fahrwerk und Fahrbahn wird
+von den Reifen übernommen, die damit das Fahrverhalten ma{\ss}geblich
+beeinflussen. Die Grundzüge des Reifenverhaltens sowie deren
+Einfluss auf die Fahrzeugdynamik sind in \cite{Ammon1997,
+Mitschke2004, Zomotor1991} beschrieben. Ausführliche Betrachtungen
+der Reifeneigenschaften inklusive der mathematischen Modellbildung
+finden sich in \cite{Holtschulze2006, Pacejka1988}. Dieser Abschnitt
+beschreibt die wesentlichen Reifeneigenschaften zur Berücksichtigung
+in der Fahrdynamikregelung.
+\\
+
+
+An der Kontaktfläche zwischen Reifen und Stra{\ss}e -- dem Latsch --
+greifen Kräfte und Momente in allen Raumrichtungen an. Durch die auf
+den Reifen wirkende Normalkraft $_RF_z$ ist es diesem möglich, in
+Quer- und Längsrichtung die Querkraft $_RF_y$ und Längskraft $_RF_x$
+zu übertragen. Abbildung
+\ref{Bild_TG_Reifen_Latsch_BMW_Nr_TF03_4275} zeigt den Reifenlatsch
+mit diesen Reifenkräften.
+%///////////////////////////// Bild /////////////////////////////////
+\begin{figure}[!ht]\begin{center}
+ %\input{Bilder/Bild_NAMEN_EINFUEGEN}
+ \includegraphics[width=\BildBreiteGross, clip=]{Bild_Ersatzbild}
+ %[width=15cm,height=8cm,scale=0.5,angle=45]
+ \caption{Reifen mit eingezeichnetem Rad-Koordinatensystem und
+ im Latsch angreifenden Kräften. Quelle: BMW AG, Trainingsmedien Technik, VH-2.}
+ \label{Bild_TG_Reifen_Latsch_BMW_Nr_TF03_4275}
+\end{center}\end{figure}
+%////////////////////////////////////////////////////////////////////
+
+
+Besondere Bedeutung für die übertragbare Kraft kommt dem Reibwert
+zu. Dieser setzt
+% ...unter der Annahme isotroper Reifeneigenschaften...
+% ==> Nicht richtig. Nur F_xymax ist beeinflusst von der Kraftrichtung!
+die in der Ebene übertragbare Kraft $_RF_{xy, max}$ direkt ins
+Verhältnis zur Normalkraft $_RF_z$, vgl. \cite{Weber2005} u.~a..
+%
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_TG_Reifen_Reibung}
+ \mu = \frac{_RF_{xy, max}}{_RF_z}.
+\end{equation}
+%--------------------------------------------------------------------
+%
+%
+Auf Grund von Längs- und Querkräften kommt es zu einem
+Verspannungszustand im Latsch. In Längsrichtung wird dieser durch
+den so genannten Längsschlupf beschrieben. Wird die
+Radgeschwindigkeit bei einer Bremsung kleiner als die
+Fahrzeuggeschwindigkeit, so wird ein Schlupf $\lambda$ zwischen dem
+Rad und der Fahrbahnoberfläche verursacht. Damit der Schlupf stets
+positiv ist, wird zwischen den Fällen Antreiben und Bremsen
+unterschieden. $i$ steht für das jeweilige Rad und kann demnach bei
+einem Fahrzeug mit 4 Reifen Werte von $1,...,4$ annehmen.
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+ \label{Gleichung_TG_Reifen_Laengsschlupf}
+ \lambda_i &=& \frac{r_{dyn, i} \cdot \omega_{R, i} - {}_Kv_{R, i}}{r_{dyn, i}
+ \cdot \omega_{R, i}} \quad \mbox{(Antreiben)}
+ \\
+ \lambda_i &=& \frac{_Kv_{R, i} - r_{dyn, i} \cdot \omega_{R, i}}
+ {_Kv_{R, i}} \quad \mbox{(Bremsen)}.
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+In Querrichtung wird der Schräg\-lauf\-win\-kel verwendet, vgl.
+\cite{Mitschke2004, Zomotor1991}, der oft auch als Querschlupf
+bezeichnet wird. Der Schräglaufwinkel $\alpha$ ist der Winkel
+zwischen der Reifenlängsachse $_Rx$ und dem Geschwindigkeitsvektor
+des Radmittelpunkts.
+%-----------------------------Gleichung------------------------------
+\begin{eqnarray}
+ \label{Gleichung_TG_Reifen_Schraeglaufwinkel}
+ \alpha_i &=& \delta_i - \beta_i.
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Die Längskraft als Funktion des Längsschlupfes und die Querkraft als
+Funktion des Schräg\-lauf\-winkels haben für jeweils reinen Längs-
+und Querschlupf einen ähnlichen Verlauf. Abbildung
+\ref{Bild_TG_Reifen_Fxy__Fz} zeigt diese Reifencharakteristik unter
+Variation der Normalkraft für typische Wertebereiche eines
+Pkw-Reifens. Au{\ss}erdem ist das Reifenverhalten in kombinierten
+Schlupfzuständen in Abbildung
+\ref{Bild_TG_Reifen_Fxy__lamda_und_alpha} dargestellt. Die Verläufe
+resultieren aus der Simulation mittels "`Magic
+Formula"'-Reifenmodell, vgl. \cite{Pacejka1988}. Im Anhang sind
+weitere Diagramme in dreidimensionaler Darstellung zu finden.
+\\
+
+
+
+
+Auf Grund der Radrotation, der besonderen physikalischen
+Eigenschaften des Gummis und der Kombination aus Haft- und
+Gleitreibung im Latsch kommt es zu Reifenmerkmalen, die im Folgenden
+zusammengefasst sind:
+%-----------------------------Aufzählung-----------------------------
+\begin{Aufzaehlung}{$\bullet$}
+ \item Lineare Steifigkeit bei kleinem Quer- und Längsschlupf, siehe
+ \ding{182} in Abbildung \ref{Bild_TG_Reifen_Fxy__Fz}. Diese
+ Reifeneigenschaft ist Reibwert-unabhängig.
+ %
+ \item Sättigung durch steigenden Quer- und Längsschlupf, siehe
+ \ding{183} in Abbildung \ref{Bild_TG_Reifen_Fxy__Fz}.
+ %
+ \item Sättigungsabfall durch steigenden Quer- und Längsschlupf,
+ siehe \ding{184} in Abbildung \ref{Bild_TG_Reifen_Fxy__Fz}.
+ %
+ \item Degressive Abhängigkeit des Kraftmaximums und der
+ linearen Reifensteifigkeit von der Normalkraft. Diese Eigenschaft
+ ist in Abbildung \ref{Bild_TG_Reifen_Fxy__Fz} im dargestellten
+ Wertebereich schwach erkennbar.
+ %
+ \item Reibwertabhängiges Kraftmaximum und Sättigungsverhalten,
+ siehe u.~a. \cite{Zomotor1991}.
+ %
+ \item Verschiebung des Kraftmaximums zu höheren Schlupfwerten und
+ Verringerung der linearen Steifigkeit auf Grund von gleichzeitig
+ auftretendem Längs- und Querschlupf, siehe Abbildung
+ \ref{Bild_TG_Reifen_Fxy__lamda_und_alpha}.
+ %
+ \item Nullpunktsverschiebung durch Vorspur und damit auftretende
+ Querkräfte bei Geradeausfahrt, bei Kraftmessung besonders
+ zu berücksichtigen.
+ %
+ \item Temperaturbedingter Abfall der Steifigkeiten von ca.
+ $1\einh{\%}$ pro $1\einh{^\circ C}$, siehe \cite{Holtschulze2006}.
+ %
+ \item Einlaufverhalten durch Verspannung zwischen Felge und
+ Reifenkarkasse beim Lenken und Elastizitäten der Achse.
+\end{Aufzaehlung}
+%--------------------------------------------------------------------
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----MiniSek--------XXXXXXXXXXXXXXXXXXXXXXXX
+\minisec{Kraftschluss und Reibung} \label{MiniSek_TG_Reifen_Reibung}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Die am Latsch wirkenden Kräfte in der $xy$-Ebene des
+Reifenkoordinatensystems $R$ werden zu einem Kraftvektor
+$\vec{F}_{ixy}$ zusammengefasst. Der Kraftschluss bzw.
+Kraftschlussquotient $q_i$ eines Reifens lässt sich damit als das
+Verhältnis zwischen horizontal und vertikal wirkender Kraft
+definieren und erreicht sein Maximum $q_{i, max}$ bei maximaler
+ebener Reifenkraft $_RF_{ixy, max}$:
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+ \label{Gleichung_TG_Reifen_Kraftschlussquotient}
+ q_i &=& \frac{|\vec{F}_{ixy}|}{_RF_{iz}}
+ = \frac{\sqrt{_RF_{ix}^2 + {}_RF_{iy}^2}}{_RF_{iz}}
+ = \frac{_RF_{ixy}}{_RF_{iz}}
+ \\
+ \label{Gleichung_TG_Reifen_Kraftschlussquotient_Max}
+ q_{i, max} &=& \frac{_RF_{ixy, max}}{_RF_{iz}}.
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+In gleicher Weise lassen sich Kraftquotienten $q_i$ für die Längs-
+und Querrichtung definieren, mit denen die Berechnung der Längs- und
+Querkräfte erfolgt::
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+ \label{Gleichung_TG_Reifen_Kraftschlussquotient_qx}
+ {}_RF_{ix} &=& q_{ix} \cdot {}_RF_{iz} \quad \leq \quad
+ \mu_x \cdot {}_RF_{iz}
+ \\
+ \label{Gleichung_TG_Reifen_Kraftschlussquotient_qy}
+ {}_RF_{iy} &=& q_{iy} \cdot {}_RF_{iz} \quad \leq \quad
+ \mu_y \cdot {}_RF_{iz}.
+\end{eqnarray}
+%--------------------------------------------------------------------
+Die Längs- und Querkräfte am Reifen können nicht grö{\ss}er als die
+maximal mögliche Kraft werden, die durch den Reibwert und die
+Normalkraft bestimmt wird. Um zu berücksichtigen, dass ein Reifen
+ggf. in Längsrichtung eine grö{\ss}ere Kraft absetzen kann als in
+Querrichtung, wird zwischen dem Reibwert in Längsrichtung $\mu_x$
+und Querrichtung $\mu_y$ unterschieden.
+\\
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----MiniSek--------XXXXXXXXXXXXXXXXXXXXXXXX
+\minisec{Normalkraftdegression}
+\label{MiniSek_TG_Reifen_Normalkraftdegr}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Mit steigender Normalkraft $_RF_{iz}$ kann ein Reifen grö{\ss}ere Kräfte
+in seiner horizontalen $xy$-Ebene aufbringen, wobei es zu einem
+degressiven Verhalten kommt, vgl. \cite{Ammon1997, Holtschulze2006,
+Zomotor1991}.
+
+
+Das bedeutet, dass bei einem Reibwert zwischen Fahrbahn und Reifen
+von $\mu = 1$ die maximal übertragbare Kraft $_RF_{ixy, max}$ nicht
+im gleichen Ma{\ss} ansteigt wie die Normalkraft. Mit anderen Worten
+steigt die maximal übertragbare Kraft mit wachsender Normalkraft
+degressiv an.
+\\
+
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Subsektion--XXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection{Lineares Einspurmodell}
+\label{Subsektion_TG_Einspurmodell}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Das \textbf{E}in\textbf{s}pur\textbf{m}odell (ESM) ist in der Lage,
+in einfacher Art und Weise das querdynamische Fahrverhalten eines
+Fahrzeugs zu beschreiben. Die Herleitung findet sich im Skript von
+Prof. Dorsch, siehe \cite{Dorsch2009}. Ursprünglich stammt es von
+\cite{Riekert1940} aus dem Jahr 1940.
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----MiniSek--------XXXXXXXXXXXXXXXXXXXXXXXX
+\minisec{Grundsätzliches} %\label{MiniSek_Vorlagen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Dem lineare Einspurmodell geht von der Vereinfachung aus, dass der
+Fahrzeugschwerpunkt auf der Fahrbahn liegt. Damit entfällt eine
+quer- und längsbeschleunigungsabhängige Verteilung der
+Radaufstandskräfte, sodass auf die Modellierung von 4
+Radaufstandspunkten bzw. Reifen verzichtet werden kann. Daraus
+ergibt sich die Bezeichnung als \textbf{Einspur}-Modell, in dem für
+jede Achse nur ein Rad modelliert wird.
+
+Um das lineare Fahrzeugverhalten mit dem Einspurmodell zu
+beschreiben, werden auch die Reifen mit einer linearen
+Seitensteifigkeit $c_{R, v}$, $c_{R, h}$ modelliert. Um dabei die
+gesamte Elastizitätskette von der Radaufhängung bis zum Rad zu
+berücksichtigen, werden aus der Rad- und
+Aufhängungsseitensteifigkeit so genannte Achsseitensteifigkeiten
+gebildet. Die beiden Steifigkeiten werden dabei als Reihenschaltung
+behandelt:
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_TG_ESM_Steifigkeiten_ges}
+ c_i = \frac{c_{R, i} \cdot c_{A, i}}{c_{R, i} + c_{A, i}} \quad mit
+ \quad i = v, h.
+\end{equation}
+%--------------------------------------------------------------------
+%
+Da diese Steifigkeitsparameter meist aus dem Vergleich zw. Messung
+und Einspurmodell-Simulation berechnet werden, entfällt die
+Notwendigkeit, die einzelnen Steifigkeiten aus Gleichung
+\eqref{Gleichung_TG_ESM_Steifigkeiten_ges} getrennt bestimmen zu
+müssen.
+
+Da das Einspurmodell das querdynamische Verhalten eines Fahrzeugs
+beschreiben soll, werden Längskräfte durch z. B. Antriebsmomente an
+den Rädern vernachlässigt.
+\\
+
+
+Das Einspurmodell verwendet folgende Parameter:
+%-----------------------------Aufzählung-----------------------------
+\begin{Aufzaehlung}{$\bullet$}
+\item Masse $m$
+\item Achsseitensteifigkeiten vorne/hinten $c_{v/h}$,
+\item Schwerpunktsabstand zur Vorderachse $l_v$,
+\item Radstand $l$ und
+\item Massenträgheit $J_{zz}$.
+\end{Aufzaehlung}
+%--------------------------------------------------------------------
+%
+Als Eingang verwendet das Einspurmodell den Fahrerlenkwinkel
+$\delta_F$ sowie die Fahrzeuglängsgeschwindigkeit $_Kv_{Cx}$ und
+berechnet daraus die Modellgierrate $_K\psip_{ESM}$ und
+Modellquerbeschleunigung $_Ka_{Cy, ESM}$ des Fahrzeugs. Abbildung
+\ref{Bild_TG_ESM_Schnittstellen} verdeutlicht die Schnittstellen des
+Einspurmodells.
+%///////////////////////////// Bild /////////////////////////////////
+\begin{figure}[!ht]\begin{center}
+ \includegraphics[width=\BildBreiteGross, clip=]{Bild_Ersatzbild}
+ %[width=15cm,height=8cm,scale=0.5,angle=45]
+ \caption{Aufbau des Einspurmodells mit Eingangsgrö{\ss}en (Pfeile links),
+ Ausgängsgrö{\ss}en (Pfeile rechts) und erforderlichen Parametern (Pfeile oben).}
+ \label{Bild_TG_ESM_Schnittstellen}
+\end{center}\end{figure}
+%////////////////////////////////////////////////////////////////////
+%
+
+Der lineare Fahrbereich ist als der Bereich definiert, in dem sich
+das Fahrzeug wie das lineare Einspurmodell verhält. Auf Hochreibwert
+ist dies bis zu einer Querbeschleunigung von $_Ka_{Cy} =
+4\einhbruch{m}{s^2}$ der Fall. Der Querkraftaufbau der Achse über
+dem Schräglaufwinkel lässt sich in diesem Bereich durch eine Gerade
+abbilden, dessen Steigung die Achsseitensteifigkeit ist. Nach
+Verlassen dieses linearen Bereichs treten nichtlineare
+Fahrzeugeigenschaften in den Vordergrund. Der nichtlineare
+Fahrbereich ist durch die Kraftsättigung des Reifens dominiert.
+
+Den Gro{\ss}teil des alltäglichen Fahrbetriebs absolviert der Fahrer im
+linearen Bereich. Dadurch erwartet der normale Fahrer stets ein
+lineares Fahrverhalten und ist überrascht, wenn sich das Fahrzeug
+nichtlinear verhält.
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----MiniSek--------XXXXXXXXXXXXXXXXXXXXXXXX
+\minisec{Herleitung} %\label{MiniSek_Vorlagen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Für das Einspurmodell berechnen sich die Achs-Schwimmwinkel nach Gl.
+\ref{Gleichung_TG_FzgDyn_Schwimmwinkel_radindividuell} zu:
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_TG_ESM_Achs_Schwimmwinkel}
+ \nonumber
+ \beta_v &=& \frac{_Kv_{vx}}{_Kv_{vy}} = \beta + \frac{l_v \cdot _K\psip}{_Kv_{Cx}}
+ \\
+ \beta_h &=& \frac{_Kv_{hx}}{_Kv_{hy}} = \beta - \frac{l_h \cdot _K\psip}{_Kv_{Cx}}
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Unter Verwendung von Gleichung
+\eqref{Gleichung_TG_Reifen_Schraeglaufwinkel} ergeben sich die
+Achs-Schräglaufwinkel zu:
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_TG_ESM_Achs_Schraeglaufwinkel}
+ \nonumber
+ \alpha_v &=& \delta_v - \beta_v = \delta_v - \beta - \frac{l_v \cdot _K\psip}{_Kv_{Cx}}
+ \\
+ \alpha_h &=& \delta_h - \beta_h = \delta_h - \beta + \frac{l_h \cdot _K\psip}{_Kv_{Cx}}
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Wie schon oben erwähnt, werden die Achsen mit linearen
+Achsseitensteifigkeiten modelliert. Daraus werden die Querkräfte an
+den Rädern bzw. Achsen berechnet:
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_TG_ESM_Fy_R}
+ \nonumber
+ _RF_{yv} &=& c_v \cdot \alpha_v = c_v \left( \delta_v - \beta - \frac{l_v \cdot _K\psip}{_Kv_{Cx}} \right)
+ \\
+ _RF_{yh} &=& c_h \cdot \alpha_h = c_h \left( \delta_h - \beta + \frac{l_h \cdot
+ _K\psip}{_Kv_{Cx}} \right)
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Beim linearen Einspurmodell wird von kleinen Winkeln ausgegangen (zu
+Linearisierungsfehlern siehe \ref{Subsektion_Anhang_Linearisierung}
+auf S. \pageref{Subsektion_Anhang_Linearisierung}). Unter dieser
+Annahme lassen sich die Quer- und Längskräfte in Fahrzeugkoordinaten
+wie folgt bestimmen.
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_TG_ESM_Fxy_K}
+ \nonumber
+ _KF_{xi}&=& \sin{\delta_i} \cdot {}_RF_{yi} \ \approx \ \delta_i \cdot {}_RF_{yi}
+ \\
+ _KF_{yi}&=& \cos{\delta_i} \cdot {}_RF_{yi} \ \approx \ {}_RF_{yi}
+ \quad \quad \mbox{mit} \quad i = v, h
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Nachdem die wesentlichen Gleichungen für die angreifenden Kräfte
+vorliegen, können die Bewegungsgleichungen bestimmt werden. Als
+Vorbereitung werden die angreifenden Kräftesummen im Schwerpunkt
+gebildet.
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_ESM_Summe_Kraefte_C}
+ \nonumber
+ _KF_{Cx} &=& -\delta_v \cdot {}_KF_{yv} + \delta_h \cdot {}_KF_{yh}
+ \\
+ _KF_{Cy} &=& {}_KF_{yv} + {}_KF_{yh}
+\end{eqnarray}
+%--------------------------------------------------------------------
+\\
+
+
+Im ersten Schritt wird der Schwerpunktsatz im Bahnsystem nach Newton
+angewendet, der auch ohne die obige Annahme kleiner Winkel
+Gültigkeit hat:
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ %\label{Gleichung_TG_ESM_Schwerpunktsatz_Bahnsystem}
+ \nonumber
+ m \cdot {}_Ba_{Cy} = m \cdot (_B\dot{\beta} + _B\psip) \cdot {}_Bv_{Cx} =
+ {}_BF_{Cy}
+\end{equation}
+%--------------------------------------------------------------------
+%
+Die Transformation in Fahrzeugkoordinaten findet unter der oben
+genannten Annahme kleiner Winkel statt. Da au{\ss}erdem das
+Einspurmodell keine Verkippungen des Fahrzeugs berücksichtigt,
+stimmen alle $z$-Achsen der Koordinatensysteme überein, sodass die
+Winkelgeschwindigkeiten $\dot{\beta}$ und $\psip$ in den
+Koordinatensystemen $K$ und $B$ gleich sind.
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+ \label{Gleichung_TG_ESM_Schwerpunktsatz}
+ \nonumber
+ && {}_Kv_{Cx} = \cos{\beta} {}_Bv_{Cx} \ \approx \ {}_Bv_{Cx}
+ \\
+ && {}_Ka_{Cy} = \cos{\beta} {}_Ba_{Cy} \ \approx \ {}_Ba_{Cy}
+ \\
+ &\Leftrightarrow& m \cdot (_K\dot{\beta} + _K\psip) \cdot {}_Kv_{Cx} = -\beta
+ {}_KF_{Cx} + {}_KF_{Cy}
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+Durch die Annahme kleiner Winkel können Produkte von Winkeln
+ebenfalls vernachlässigt werden. Beim Einsetzen der Kräftesummen von
+Gleichung \eqref{Gleichung_ESM_Summe_Kraefte_C} in die obige folgt
+der vereinfachte Schwerpunktsatz:
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_TG_ESM_Schwerpunktsatz_vereinfacht}
+ m \cdot {}_Ka_{Cy} = m \cdot (_K\dot{\beta} + _K\psip) \cdot {}_Kv_{Cx}
+ = {}_KF_{yv} + {}_KF_{yh}
+\end{equation}
+%--------------------------------------------------------------------
+%
+Im zweiten Schritt kommt der Drallsatz zum Einsatz:
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_TG_ESM_Drallsatz}
+ J_{zz} \cdot {}_K\ddot{\psi} = l_v \cdot {}_KF_{yv} - l_h \cdot
+ {}_KF_{yh}.
+\end{equation}
+%--------------------------------------------------------------------
+%
+Damit liegen alle Gleichungen vor, um das Einspurmodell in einer
+Zustandsraumdarstellung zu beschreiben. Dazu werden als Zustände
+$\psip$ und $\beta$ und als Eingänge $\delta_v$ und $\delta_h$
+gewählt. Die Gleichung \eqref{Gleichung_TG_ESM_Schwerpunktsatz} wird
+nach $_K\ddot{\psi}$ sowie Gleichung
+\eqref{Gleichung_TG_ESM_Schwerpunktsatz} nach $\dot{\beta}$
+aufgelöst. Bei diesem Vorgehen sind alle Kräfte mit Hilfe der
+Gleichungen \eqref{Gleichung_TG_ESM_Fxy_K} und
+\eqref{Gleichung_TG_ESM_Fy_R} zu eliminieren. Es folgt:
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ %\label{Gleichung_1}
+ \begin{bmatrix}\ddot{\psi} \\ \dot{\beta}\end{bmatrix} =
+ \begin{bmatrix}
+    -\frac{l_h^2 c_h + l_v^2 c_v}{J_{zz}  v}
+    & \frac{l_h c_h - l_v c_v}{J_{zz}}\\
+    \frac{c_h l_h - c_v l_v - v^2 m}{v^2 m}
+    & -\frac{c_v + c_h}{v \ m}
+ \end{bmatrix}
+ \cdot
+ \begin{bmatrix}\psip \\ \beta \end{bmatrix} +
+ \begin{bmatrix}
+    \frac{l_v c_v}{J_{zz}}
+    & -\frac{l_h c_h}{J_{zz}}\\
+    \frac{c_v}{v \ m}
+    & \frac{c_h}{v \ m}
+ \end{bmatrix}
+ \cdot
+ \begin{bmatrix}\delta_v \\ \delta_h \end{bmatrix} \quad \mbox{mit}
+ \quad v = _Kv_{Cx}.
+\end{equation}
+%--------------------------------------------------------------------
+
+
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Sektion-----XXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\section{Fahrverhalten}
+\label{Sektion_TG_FzgDyn_Fahrverhalten}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Es gibt zwei unterschiedliche kritische Fahrsituationen, siehe Bild
+\ref{Bild_FDR_Untersteuern_Uebersteuern}.
+%///////////////////////////// 2 Bilder nebeneinander ///////////////
+\begin{figure}[!ht]\centering
+ \subfloat[\captionsf{Die vom Fahrer gewünschte Richtungsänderung kann vom Fahrzeug nicht
+ umgesetzt werden, das Fahrzeug "`schiebt über die Vorderachse"' und
+ vergrö{\ss}ert den befahrenen Kreisradius. Die Vorderachse gerät in
+ eine Querkraftsättigung.}]
+ {
+    \includegraphics[width=\BildSubfigureBreite]{Bild_Ersatzbild}}
+ \subfloat[\captionsf{Das Fahrzeug dreht bzw. giert stärker als
+ der Fahrer es wünscht, das Fahrzeug "`bricht (mit dem Heck) aus"'.
+ Die Hinterachse gerät in eine Querkraftsättigung.}]
+ {
+    \includegraphics[width=\BildSubfigureBreite]{Bild_Ersatzbild}}
+    \caption{Kritische Fahrsituationen beim Befahren einer Kurve:
+    Unter- und übersteuern. Quelle: BMW AG, Trainingsmedien Technik, VH-2.}
+ \label{Bild_FDR_Untersteuern_Uebersteuern}
+\end{figure}
+%////////////////////////////////////////////////////////////////////
+%
+Ein untersteuerndes Fahrverhalten liegt vor, wenn der
+Schräglaufwinkel an der Vorderachse grö{\ss}er ist als an der
+Hinterachse. Im umgekehrten Fall handelt es sich um eine
+übersteuernde Fahrsituation, vgl. \cite{Zomotor1991}.
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+%\label{Gleichung_2}
+ \nonumber
+ \alpha_v > \alpha_h & \pfeil & \mbox{Untersteuern}
+ \\
+ \nonumber
+ \alpha_v < \alpha_h & \pfeil & \mbox{übersteuern}
+ \\
+ \alpha_v = \alpha_h & \pfeil & \mbox{neutrales Verhalten}
+\end{eqnarray}
+%--------------------------------------------------------------------
+%
+
+In heutigen Serienfahrzeugen werden die Schräglaufwinkel nicht
+gemessen. Daher stehen diese lediglich als Schätzgrö{\ss}e zur Verfügung
+und werden in Regelsystem meist nicht verwendet. Um dieses
+prinzipielle Problem zu umgehen, wird auf das Einspurmodell
+zurückgegriffen.

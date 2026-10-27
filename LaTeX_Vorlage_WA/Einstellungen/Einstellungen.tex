@@ -1,0 +1,363 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 
+%%% Einstellungen
+%%%
+%%% Benoetigt wird KOMA-Skript ab Version 2.8j vom 30.07.2001
+%%% Vor der Veraenderung irgendwelcher Einstellungen wird dringend empfohlen
+%%% die Anleitung zum KOMA-Skript (scrguide) zu konsultieren !!
+%%%
+%%% Bilder bitte nicht mit Endung einbinden, so ist die Erzeugung von
+%%% DVI, PS und PDF problemlos möglich!
+%%% Infos zur \documentclass:
+%%% http://wannert.net/latex/eine-praeambel-nicht-nur-fuer-mathematiker
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Haupteinstellungen für die KOMA-Dokumentenvorlage
+% ===================================================
+\documentclass[    
+            paper=a4, 		%Papiergröße
+            %----------------------------------------------
+            %DIVcalc,        % Automatische Berechnung des Satzspiegels nach "goldenem Schnitt"
+            DIV15,         % Unterteilung des Seitenlayouts in xy Streifen,
+                           % führt zu kleineren Rändern, je größer die Zahl.
+            %----------------------------------------------
+            oneside,        % Seitenaufteilung: einteilig.
+            %twoside,         % Seitenaufteilung: zweiseitig.
+            %----------------------------------------------
+            titlepage,      % Titelseite speziell, ohne Seitenkopf und -fu{\ss}
+            %----------------------------------------------
+            fontsize=12pt,           % Schriftgröße
+            %----------------------------------------------
+            %openright,      % Kapitel beginnen nur auf rechten Seiten.
+            openany, 				% Kapitel können auf geraden und ungeraden Seiten beginnen
+            %----------------------------------------------
+            headinclude,    % Kopfzeile wird Seiten-Layouts mit beruecksichtigt
+            %----------------------------------------------
+            headsepline,    % Linie unter Kolumnentiteln an
+            %headnosepline,  % Linie unter Kolumnentiteln aus
+            %----------------------------------------------
+            %footexclude,    % Fu{\ss}noten-Bereich ausschalten?
+            footinclude=false,
+            %----------------------------------------------
+            footsepline = false,    % Linie über Fußzeilen
+            %----------------------------------------------
+            headings = normal, % überschriftengröße (Kapitel,...), "big"
+            %----------------------------------------------
+            fleqn,          % Gleichungen linksbündig statt mittig
+            %----------------------------------------------
+            %chapterprefix,  % Prefix für Kapitel: "Kapitel"
+            %nochapterprefix,% Prefix für Kapitel: keiner.
+            %----------------------------------------------
+            %halfparskip*,    % Zeilenabstand zwischen Absätzen: mind. 0.25 Zeile
+            %halfparskip,    %  Zeilenabstand zwischen Absätzen: 0.5 Zeile
+            %parskip,        % Zeilenabstand zwischen Absätzen: 1 Zeile
+            %parindent,      % Zeilenabstand zwischen Absätzen: keiner, nur Wort einrücken.
+            parskip=half,
+            %----------------------------------------------
+            german,         % Sprache
+            %----------------------------------------------
+            %final,          % Version: Endversion
+            %draft,          % Version: Zwischenversion, z.~B. ohne Bilder,...
+            draft=false,
+            %----------------------------------------------
+            bibliography = totoc,       % Literaturverzeichnis ins Inhaltsverzeichnis
+            %----------------------------------------------
+            %pdftex,         % Verwendung mit pdftex
+            %----------------------------------------------
+            %'BCOR12mm,version=first,       % ergibt links einen Rand von  zusätzlich 1cm zum Binden.
+            %----------------------------------------------
+            numbers = noenddot,    % Kapitelnummern immer ohne Punkt
+            %----------------------------------------------
+            caption = tableh,   % korrekte Abstaende bei TabellenUEBERschriften
+            %----------------------------------------------
+            %abstracton,    % Zusammenfassung?
+            %----------------------------------------------
+            %draft               % Keine Bilder in der Anzeige, overfull hboxes werden angezeigt
+            %----------------------------------------------
+                ]{scrbook}[2001/07/30]   % scrbook-Version mind. 2.8j von 2001/07/30
+                %]{scrreprt}
+
+
+% Schalter definieren 
+%---------------------------------------------------------
+\usepackage{ifthen}
+\newboolean{VersionDozent}
+\setboolean{VersionDozent}{false}
+
+\newboolean{alphaDIN}
+\setboolean{alphaDIN}{true}
+
+% Seitenlayout ändern
+% ====================
+%\typearea{18}
+%\typearea[18mm]{19}          % [Binderand]{Divisor für Seitenaufteilung}
+%\areaset[1cm]%               % Zusaetzlicher Rand fuer die Bindung
+%        {18cm}{25cm}         % Textbreite und Hoehe
+
+
+\usepackage{lscape}           % Seite im Querformat bei Erhalt der Kopfzeile
+%\usepackage{portland}
+\usepackage{rotating} 				% um Text u.s.w. zu rotieren
+
+
+% Grafiken:
+% ==========
+\usepackage{ae}                  % Für PDF-Erstellung
+\usepackage{graphicx}            % zum Einbinden von Grafiken
+\usepackage{float}               % u.a. genaue Plazierung von Gleitobjekten mit H
+\graphicspath{{bilder/}{Bilder/}} 			 	 % Verzeichnis, in dem die ganzen Bilder liegen
+\usepackage{flafter} 						 % Gleitobjekte immer hinter ihrem ersten Verweis platzieren
+%\usepackage{wrapfig} % Bilder mit Text drumrum, Einbinden mit \begin{wrapfigure}
+% \usepackage{pstricks}          % PostScript Macros
+
+% pdf-Bilder mit Verwendung von pdf-Latex
+%\usepackage[pdftex]{graphicx}
+%\usepackage[pdftex,hypertexnames=false]{hyperref}
+
+% Farben vordefinieren
+\usepackage{color}
+    \definecolor{darkred}{rgb}{0.5,0,0}
+    \definecolor{darkgreen}{rgb}{0,0.5,0}
+    \definecolor{darkblue}{rgb}{0,0,0.5}
+    \definecolor{Hellgrau}{gray}{0.92} 
+
+
+% Tabellen
+% =========
+\usepackage{multirow} % Tabellen-Zellen über mehrere Zeilen
+\usepackage{ragged2e} %Ausrichtung rechtsbündig möglich mit Option >{\RaggedRight}p{6cm}
+\usepackage{longtable} %für 2-Seitige Tabellen
+
+% Für Farben in Tabellen:
+\usepackage{colortbl} 
+
+
+
+% Bildunterschriften
+% ===================
+\usepackage{caption, here} % offenbar für neue MikTex-Vers. (z. B. 2.7)
+
+
+\renewcommand{\captionfont}{\small\itshape} % Bildunterschriften kleiner und kursiv
+
+% Für mehrere Abbildungen in einer:
+\usepackage{subfig} %offenbar für neue MikTex-Vers. (z. B. 2.7), funktioniert aber nicht mit den captions (warum???)
+
+
+% Bei Miktex 2.7 werden die Captions von Subfigures zu breit!
+% daher oben subfig laden und hiermit einstellen:
+\captionsetup[subfloat]{%
+   margin = 4mm,
+   labelfont = {it},
+   format = plain, % oder 'hang'
+   indention = 0em,  % Einruecken der Beschriftung
+   singlelinecheck = true, % false (true=bei einer Zeile immer zentrieren)
+ }
+%}
+
+\captionsetup{
+   margin = 4mm,
+   %font = {small,rm},
+   labelfont = {it},
+   format = plain, % oder 'hang'
+   indention = 0em,  % Einruecken der Beschriftung
+}
+
+
+% Rechtschreibung 
+% ================
+\usepackage{ngerman} % neue Rechtschreibung
+\usepackage[utf8]{inputenc}    % Input-Encodung: utf-8 fuer Windows
+\usepackage{verbatim}          % Quellcode einbinden (\verbatiminput)
+\usepackage[T1]{fontenc}         % T1-kodierte Schriften, korrekte Trennmuster fuer Worte mit Umlauten XXX ACHTUNG XXX bringt aber auch mit sich, dass die Auflösung im pdf nicht unendlich ist!!
+
+
+% Besondere Zeichen
+% ==================
+% Matrizenbefehle benutzen, für alle Symbole (Mathe)
+\usepackage[centertags]{amsmath} % AMS-Mathematik, centertags zentriert Nummer bei split
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+
+% verschiedene Symbole
+%\usepackage{latexsym}           % verschiedene Symbole
+\usepackage{textcomp}           % verschiedene Symbole
+
+%für Laplace-Transformationen
+\usepackage{trsym, trfsigns}
+
+% für Einheiten
+\usepackage{units}
+
+% eingekreiste Zahlen \ding{172} = 1
+%\usepackage{psnfss} %wurde nicht gefunden
+\usepackage{pifont}
+
+% Häkchen (\checked), Smileys (\smiley),...
+%\usepackage{wasysym}
+
+% Kreuz \XSolid, \XSolidBrush
+%\usepackage{bbding}
+
+% für z.~B. "N" als Symbol für natürliche Zahlen.
+\usepackage{dsfont} %\mathds{N} --> N dann im pdf nicht sichtbar?
+
+
+% Verzeichnisse, Referenzen
+% ==========================
+\usepackage{nomencl} 					 % Erstellung einer Nomenklatur
+%\usepackage{cite}              % Sortierte und zusammengefasste Zitatnummern 
+\usepackage{varioref}          % Verbesserte Referenzen
+% \usepackage[numbers, sort]{natbib} % DIN Literaturverzeichnis; nicht zusammen mit cite verwenden!
+
+% Inhaltsverzeichnis: Anzeigetiefe
+\setcounter{tocdepth}{3}						%Tiefe des Inhaltsverzeichnisses
+
+% Kopf- und Fußzeilenlayout
+% ==========================
+\usepackage[left=2cm, right=1.5cm, top=1.5cm, bottom=2cm]{geometry}
+
+\usepackage[automark]{scrlayer-scrpage}
+%[] für die erste Seite,{} für alle anderen
+\pagestyle{scrheadings}
+\clearscrheadfoot                   % Standarddefinitionen l\"{o}schen
+\ihead[]{\headmark}                 % Kolumnentitel oben innen
+\ohead[\pagemark]{\pagemark}        % Seitennummern immer oben aussen
+
+
+% BibTex nach DIN1505
+\usepackage{bibgerm}    %BibTex German Style DIN 1505
+
+% Seitenlayout
+% =============
+
+% damit die erste Zeile eines Absatzes nicht mehr eingerückn wird:
+%\parindent0cm
+
+% Werte ändern
+\setlength{\parskip}{0.15cm} % Abstand von Absatz zu Absatz (mit leerer Zeile induziert)
+\setcounter{secnumdepth}{3} %damit auch Subsubsections nummeriert werden (Nummerierungstiefe)
+
+% Zeilenabstand einstellen:
+\usepackage{setspace}            % Zeilenabstand einstellbar
+\onehalfspacing                  % eineinhalbzeilig einstellen
+%\renewcommand{\baselinestretch}{1.1}
+
+% Das soll weniger Warnungen over/underfull hbox mit sich bringen.
+%\sloppy
+%\fuzzy  % schaltet \sloppy wieder aus.
+
+% Vordefinierte Namen ändern (Kapitel, ...)
+\renewcommand{\bibname}{Literatur} % Literaturverzeichnis wird zu Literatur
+\renewcommand{\figurename}{Bild}   % Abbildung wird zu Bild
+\renewcommand{\listfigurename}{Bildverzeichnis}
+
+
+% Schriftart ändern
+% ==================
+% Serifenlose Schrift als Standard (auch fuer Bildunterschriften!)
+\renewcommand{\rmdefault}{cmss}
+
+% Schrift mit Serifen auch fuer Ueberschriften benutzen
+%\renewcommand*{\sectfont}{\bfseries}
+%\renewcommand*{\descfont}{\bfseries}
+
+\renewcommand{\headfont}{\normalfont\sffamily}    % Kolumnentitel serifenlos
+\renewcommand{\pnumfont}{\normalfont\sffamily}    % Seitennummern serifenlos
+
+
+% Hyperreferenzen -> Links im dvi- und pdf-Dokument
+% ==================================================
+\usepackage{ifpdf} %ermöglicht das Umschalten von pdf nach eps,...
+
+% Je nach Kompilierung (mit pdf oder mit eps) hier
+% automatische Umschaltung.
+\ifpdf
+    \usepackage[pagebackref,pdftex]{hyperref}
+    \pdfcompresslevel=0
+\else
+    %für Hyperreferenzen im pdf-Dokument, alte Miktex-Version (2.1)
+    \usepackage[pagebackref,hypertex]{hyperref}
+    % neue Miktex-Version(2.5)
+    %\usepackage[a4paper,pagebackref,final,hypertex]{hyperref} %so gehen die Hyperreferenzen in YAP wieder.
+\fi
+
+% Hyperreferenzen gezielt einstellen: Farben, Darstellung des pdfs,...
+\hypersetup{
+    pdftitle        = {Titel},
+    pdfsubject      = {Skript},
+    pdfauthor       = {Autor},
+    pdfkeywords     = {},
+    pdfcreator      = {pdftex},
+    pdfproducer     = {LaTeX am \today},    linkcolor       = darkred,
+    anchorcolor     = darkred,
+    citecolor       = darkred,
+    filecolor       = darkred,
+    menucolor       = darkred,
+    urlcolor        = darkred,
+%    pdfview         = FitV,
+%    pdfstartview    = FitV,
+%    pdfstartpage    = {1},
+%    pdfpagelayout   =TwoColumnRight,
+    pdfpagemode     = UseNone,
+    breaklinks      = true,
+    colorlinks      = true,
+    pdfborder       = 0 0 0,
+    plainpages      = false,
+%    pdfborder       = 0 0 0,
+%    bookmarksnumbered = true,
+%    bordercolor     = false,
+%    linkbordercolor = {0 0 0},  %Farbe der Textbox
+%    citebordercolor = {0 0 0},
+%    filebordercolor = {0 0 0},
+%    pagebordercolor = {0 0 0},
+%    urlbordercolor  = {0 0 0},
+%    breaklinks      = false,
+%    linktocpage     = true}
+%    ps2pdf
+}
+
+
+% Abschluss der Einstellungen
+% ============================
+\typearea[current]{current}        % Neuberechnung des Satzspiegels mit alten Werten nach Änderung von Zeilenabstand,etc
+
+% Quelltext einbinden
+% ============================
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mdwlist}
+    %Als Code-Schnippsel im Fließtext
+    %\lstinline|print "hello world"|
+    %\lstinline{}
+    %Als eigenständigen Sourcecode
+    %\begin{lstlisting}[caption=Beispielcode]{Name}
+    %print "hello world";
+    %\end{lstlisting}
+    
+    %Einbetten einer externen Source-Code-Datei
+    %\lstinputlisting[frame=single,label=beispielcode,caption=Ein Beispiel]{beispiel.pl}
+
+%\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt}
+%\lstset{language =	Matlab}
+
+\lstset{
+  basicstyle=\footnotesize,
+	language=C,                % {} für normalen Klartext
+	%backgroundcolor=\color{white},
+	backgroundcolor=\color{Hellgrau},
+	numbers=left, numberstyle=\tiny, numbersep=5pt, %Zeilennummerierung
+	linewidth=\linewidth,       % Zeilenbreite
+	breaklines=true,             % Zeileumbruch
+	breakatwhitespace=true, %Umbruch an Leerzeichen
+	%caption = test listing       % Überschrift 
+}
+
+% Silbentrennung für schwierige Worte, nur ohne Umlaute
+% möglich! Sonst so trennen:  hof-fent-lich
+\hyphenation{}
+
+% Nicht deklarierfähige Wörter hier (die sind im Text so zu trennen):
+% höhe\-rer

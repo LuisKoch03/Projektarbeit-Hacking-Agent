@@ -1,0 +1,116 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Hochschule Hamm-Lippstadt
+%%%
+%%% Erstellt:      Luis Koch und Fabian Babik
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{Einstellungen/Einstellungen}
+
+% Neue, eigene Kommandos
+\input{Einstellungen/Kommandos}
+
+\begin{document}
+
+% Titelseite
+\include{Kapitel/Titelseite}
+
+% Sperrvermerk
+\include{Kapitel/Sperrvermerk}
+
+%im ersten Teil nur r?mische Seitenzahlen:
+\pagenumbering{Roman}
+
+
+% Vorwort
+%\include{Kapitel/Vorwort}
+
+
+% Inhaltsverzeichnis
+%====================
+\tableofcontents
+%\listoffigures
+%\listoftables
+\clearpage
+
+
+% Formelzeichen-Erkl?rung
+%=========================
+\include{Kapitel/FZ_Formelzeichen}
+\clearpage
+
+\include{Kapitel/Ideensammlung}
+
+\include{Kapitel/Kurzfassung}
+\include{Kapitel/Abstract}
+
+% im eigentlichen Dokument arabische Seitenzahlen:
+% WICHTIG: Quellenverweise d?rfen erst ab hier auftauchen, da es
+% sonst zu Fehlern bei dvi2ps gibt (wahrscheinlich geht ein Verweis
+% auf einer Seite ohne Seitenzahl nicht.
+\pagenumbering{arabic}
+
+
+% Kapitel einbinden
+% ==================
+\include{Kapitel/Einleitung}
+\include{Kapitel/TheoretischeGrundlagen}
+
+%\include{Kapitel/Typografie}
+
+
+\include{Kapitel/Loesungswege}
+\include{Kapitel/Ergebnisse}
+\include{Kapitel/Zusammenfassung}
+
+% ANH?NGE
+\begin{appendix}
+\include{Anhang/Anhang_A}
+\include{Anhang/Vorlage}
+\include{Anhang/Tipps_und_Tricks}
+\end{appendix}
+
+
+% Literaturverzeichnis anlegen
+% =============================
+%\bibliographystyle{plain}
+%\bibliographystyle{Literatur/acm}      %engl. Lit.-Verz.
+
+% sieht gut aus: Namen als Abk?rzung + Jahreszahl
+\ifalphaDIN
+    \bibliographystyle{Literatur/alphadin} % oder abbrv, alpha, plainnat
+\else
+    \bibliographystyle{gerplain}
+\fi
+
+%f?r natbib-Paket & dt. DIN-Zitate (funktioniert noch nicht)
+%\citet erzeugt: G?bel (2007)
+%\citep erzeugt: (G?bel 2007)
+% Achtung: vorher noch \usepackage[sort&compress]{natbib} laden.
+%\bibliographystyle{Literatur/natdin}
+
+% alle B?cher, die im Text nicht zitiert werden, aber trotzdem im
+% Literaturverzeichnis auftauchen sollen:
+% \nocite{*}
+
+%Literaturverzeichnis aus Datei laden, die mit wbibdb.exe oder jabref
+%erstellt wurde
+%f?r den Verzeichnisbaum in WinEdt (folgende Zeile auskommentiert lassen!)
+%include "Literatur/MG_Literaturverzeichnis.bib"
+\bibliography{Literatur/Literaturverzeichnis}
+
+ 
+
+
+
+
+
+
+\include{Kapitel/Eidesstattliche_Erklaerung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Dokument fertig
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

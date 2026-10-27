@@ -1,0 +1,94 @@
+%===================================================================================================================
+\subsection{Zitieren}
+Sobald auf fremde Literaturquellen referenziert wird, ist die Verwendung einer korrekten Zitierweise und der Aufbau eines Literatur- und Quellenverzeichnis erforderlich.
+Die Inhalte fremder Quellen können in einem direkten oder indirekten Zitat wiedergegeben werden.
+
+Bei der wörtlichen Übernahme einer fremden Quelle im eigenen Text wird von einem direkten Zitat gesprochen.
+Dieses steht immer in Anführungszeichen und muss buchstaben- und zeichengetreu übernommen werden, auch wenn das Original Rechtschreib- oder sonstige Fehler enthält.
+
+Ein indirektes Zitat liegt vor, wenn fremde Gedanken und Ausführungen sinngemäß übernommen werden.
+Es steht nie in Anführungszeichen und wird z.\,B. mit einem "`vgl."' referenziert.
+
+Man spricht von einem Vollbeleg, wenn ein gesondertes Literaturverzeichnis vorliegt und auf die Einträge im Literaturverzeichnis verwiesen wird wie das in dieser wissenschaftlichen Arbeit der Fall ist.
+Bei einem Kurzbeleg existiert kein gesondertes Literaturverzeichnis.
+Die Quellen der Zitate werden dabei innerhalb des Textes oder in Fußnoten aufgeführt \cite{Kipp2012}.
+
+Sinngemäß zitierte Sachverhalte werden durch die Quellenangabe z.\,B. am Ende eines Teilsatzes, eines Satzes oder Absatzes gekennzeichnet \cite[S.~109~ff.]{Hering2009}.
+Eine wissenschaftliche Arbeit stützt sich nicht nur auf Schriftwerke, sondern auch auf andere geschützte Werke der Literatur, Wissenschaft und Kunst.
+Der Textteil beinhaltet neben den eigenen und zitierten Inhalten auch Abbildungen, Tabellen und Gleichungen, welche an entsprechenden Stellen in den Text eingebunden werden \cite[S.~196]{Balz2008}.
+Die Theorie ist mit entsprechenden Zitaten, Formeln, Tabellen und Bildern aus Fachliteratur zu belegen.
+Dabei sollen grundsätzlich Primärquellen den Sekundärquellen vorgezogen werden.
+Primärquellen oder Originalquellen sind eigenständige wissenschaftliche Arbeiten, die einen konkreten Betrachtungsgegenstand haben und zum Zeitpunkt der Veröffentlichung neue Erkenntnisse über diesen liefern \cite[S.~81]{Balz2008}.
+
+"`Schwierige und komplexe Inhalte brauchen Wahrnehmungshilfen [...]: Dazu zählen Überschriften, Auszeichnungen, Bilder, Symbole und Strukturbilder, Tabellen und Diagramme, Fotos und multimediale Elemente"' (\cite{Balz2008}, S. 28).
+Wenn Formeln und Gleichungen verwendet werden, so werden sie nicht in den Text eingebettet sondern nehmen eine eigene Zeile ein. 
+Es ist üblich, die Gleichungen zusätzlich mit Gleichungsnummern am rechten Rand des Satzspiegels zu kennzeichnen, damit man sich im Text auf die jeweilige Gleichung beziehen kann.
+Im gesamten Text kann auf die Formeln Bezug genommen werden indem ihre Nummer genannt wird.
+Dabei werden die Klammern weggelassen \cite[S.~133~ff.]{Hering2009}.
+Nachfolgend wird ein Beispiel für das korrekte Einbringen einer Formel mit dem dazugehörigen Querverweis im Text dargestellt.
+
+Nach Gleichung \ref{eq:Gleichung1} errechnet sich die Gesamtsystemleistung $P_{ges}$ aus dem Produkt von Spannung $U_f$, Strom $I_f$ und der Anzahl der LEDs $n$.
+
+\begin{equation}
+P_{ges} = P_E = I_f \cdot U_f \cdot n
+\label{eq:Gleichung1}
+\end{equation}
+
+\noindent
+Formeln treten selten als einzelne Formel wie in Gleichung \ref{eq:Gleichung1} auf.
+Meist erscheinen sie im Rahmen umfangreicherer Berechnungen mit mehreren Formeln und Umformungen.
+Innerhalb des Textes sollten die Formelgrößen erklärt, Formelumformungen beschrieben und die Ergebnisse aufgegriffen werden.
+Die Einflussgrößen, die in einer Formel auftreten, werden im Text kurz vor oder direkt nach der Formel benannt und erläutert \cite[S.~134]{Hering2009}.
+Es folgt ein Beispiel für eine umfangreichere Berechnung.
+
+Die LEDs sind mit einem Durchflussstrom von $700\,mA$ und einer Durchflussspannung von $3,31V$ klassifiziert.
+Um die benötigte Systemleistung $P_{ges}$ aufzubringen, wird von dem typischen Durchflussstrom von $700\,mA$ ausgegangen.
+Bei diesem stellt sich nach Gleichung \ref{eq:Spannung319V} eine Durchflussspannung von $3,19\,V$ ein und erreicht bei der Anzahl $n$ von 14 LEDs somit die Gesamtsystemleistung von $31,25\,W$.
+%
+\begin{align}
+P_{ges} = P_E &= I_f \cdot U_f \cdot n \\
+\Leftrightarrow U_f	&= \frac{P_{ges}}{I_f \cdot n}\\
+	  &= \frac{31,25W}{700mA \cdot 14}\\
+	  &= 3,19V
+\label{eq:Spannung319V}
+\end{align}
+
+Gleichungen sowie Zahlen mit Einheiten werden kursiv hervorgehoben, falls diese im Textteil erscheinen.
+Mit Latex gesetzte Formeln sehen einheitlich aus, da Formelzeichen in der mathematischen Umgebung grundsätzlich kursiv dargestellt werden.
+
+%===================================================================================================================
+\subsection{Quellen}
+Fertigen Sie Ihr Literaturverzeichnis nach DIN ISO 690:2013-10 ist an.
+Die DIN ISO 690:2013-10 sieht im Literaturverzeichnis zwingend die Nennung des Urhebers, Sachtitels, Auflage und Erscheinungsvermerke wie Erscheinungsort, Verlag und Erscheinungsjahr einer Literaturquelle vor.
+\newpage
+Dies sind Beispiele für Zitate nach DIN ISO 690:2013-10:
+
+\textbf{Bücher}
+  \begin{tabbing}
+    [1]x \= Mitte  \kill
+    $[1]$ \> \textsc{Paul, R.}: \textit{Elektrotechnik 1.} Berlin: Springer-Verlag, 3. Auflage 1993.\\
+		\> ISBN: 978-0-387557-53-3\\
+		$[2]$ \> \textsc{Balzert, H. u.a.}: \textit{Wissenschaftliches Arbeiten.} \\
+		\> Witten: W3L-Verlag, 2. Auflage 2008. ISBN 987-3-937137-59-9\\
+		$[3]$ \> \textsc{Eichler, H.-J.; Kronfeldt, H.-D.; Sahm, J.}: \textit{Das neue Physikalische Grund-}\\
+		\>\textit{praktikum.} Berlin, Heidelberg: Springer-Verlag, 3. Auflage 2016.\\
+		\> ISBN: 978-3-662490-22-8
+  \end{tabbing}
+
+\textbf{Internetquellen}
+  \begin{tabbing}
+    [1]x \= Mitte  \kill
+    [4] \> \textsc{Wikipedia}: \textit{Feldlinien.} URL: \url{https://de.wikipedia.org/wiki/Feldlinien}, \\
+		\>Abruf: 12.02.2022\\
+  \end{tabbing}
+
+\textbf{Zeitschriften}
+  \begin{tabbing}
+    [1]x \= Mitte  \kill
+    [5] \> \textsc{Zhong, X.;Lewis, J. M.}: \textit{A New Method for Autonomous Robot Calibration.} \\
+		\>In: Proc. of the IEEE Int. Conf. on Robotics and Automation. \\
+		\>IEEE, 1995, S. 1790-1795 Vol.2. DOI: 10.1109/ROBOT.1995.525529.\\
+  \end{tabbing}
+
+
+

@@ -1,0 +1,192 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% neue, eigene Kommandos
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% normaler Text
+% ==============
+%unterstreichen
+\newcommand{\ul}[1]{\underline{#1}}
+
+%für dicke Symbole
+\newcommand{\bs}{\boldsymbol}
+
+%Gänsefüsschen unten/oben
+\newcommand{\gfu}{"`}
+\newcommand{\gfo}{"' }
+\newcommand{\gf}{}
+
+
+% Bilder -- Größe des Bildes und der
+% Achsbeschriftungen wählen.
+% ========================================
+\newcommand{\BildSubfigureBreite}{0.45\textwidth}
+\newcommand{\BildSubfigureBreiteDrittel}{0.3\textwidth}
+
+\newcommand{\BildBreiteGross}{1\textwidth}
+\newcommand{\BildBreiteMittel}{0.8\textwidth}
+\newcommand{\BildBreiteKlein}{0.65\textwidth}
+
+% caption in subfigures
+\newcommand{\captionsf}[1]{\emph{#1}}
+
+
+
+% Einheiten
+% alle Einheiten müssen mit der Umgebung $...$ versehen
+% werden.
+% =======================================================
+% Logik:
+% \einh         : einfache Einheit, z.~B. m
+% \einhbruch    : Einheit mit einem Bruch, z.~B. m/s
+% \einhmit      : Einheit in Klammern, z.~B.  t \einhmit{s}
+% \einhmitbruch : Einheit in Klammern mit Bruch, z.~B. [m/s]
+%----------------------------------------------------------
+%Schriftgröße der Einheiten hier vorgeben:
+% \es = Kommando für die Einheiten-Schriftgröße
+% mögl.: \tiny \scriptsize \footnotesize \small \normalsize
+\newcommand{\es}{\normalsize}
+
+% \einh         : einfache Einheit, z.~B. m
+\newcommand{\einh}[1]{\mbox{\es{\,$\unit{#1}$}}}
+
+% \einhbruch    : Einheit mit einem Bruch, z.~B. m/s
+\newcommand{\einhbruch}[2]{\mbox{\es{\,$\unitfrac{#1}{#2}$}}}
+
+% \einhmit      : Einheit in Klammern, z.~B.  t \einhmit{s}
+\newcommand{\einhmit}[1]{\mbox{\es{$\  [\unit{#1}$]}}}
+
+% \einhmitbruch : Einheit in Klammern mit Bruch, z.~B. [m/s]
+\newcommand{\einhmitbruch}[2]{\mbox{\es{$\  [\unitfrac{#1}{#2}]$}}}
+
+
+% Tabellen
+% =========
+% Zeilenabstände in Tabellen
+\newcommand{\abstand}{\rule{0in}{.6ex} \\[.2ex]}
+
+
+% Aufzählungen
+% =============
+%Aufzählung in einer Tabelle (kein Abstand zum
+%vorangehenden Text)
+\newenvironment{AufzTabelle}{
+    \begin{list}{$\bullet$}{
+    \setlength{\leftmargin}{0,5cm}
+    \setlength{\topsep}{0cm}
+    \setlength{\parskip}{0cm}
+    \setlength{\partopsep}{0cm}
+    \setlength{\parsep}{0 cm}
+    \setlength{\itemsep}{0cm}
+    }}
+    {
+    \end{list}
+    }
+
+% Aufzählung benutzerdefiniert
+% Aufruf: \begin{Aufzaehlung}{$\bullet$}
+\newenvironment{Aufzaehlung}[1]{
+    \begin{list}{#1}
+    {
+    \setlength{\leftmargin}{2.5cm}
+    \setlength{\rightmargin}{0,5cm}
+    \setlength{\labelsep}{0,5cm}
+    \setlength{\labelwidth}{0,5cm}
+    \setlength{\topsep}{0,5cm}
+    \setlength{\parskip}{0cm}
+    \setlength{\partopsep}{0cm}
+    \setlength{\parsep}{0cm}
+    \setlength{\itemsep}{0,2cm}
+    \setlength{\listparindent}{0cm}
+    }
+    }
+    {\end{list}}
+
+% Aufzählung benutzerdefiniert - mit Zähler
+% Aufruf: \begin{AufzaehlungZaehler}{Schritt}{:}
+%\newenvironment{AufzaehlungZaehler}[2]{
+\newcounter{zaehler}
+\newenvironment{AufzaehlungZaehler}[2]{
+    \setcounter{zaehler}{0}
+    \begin{list}{#1 \thezaehler #2}
+    {
+    \usecounter{zaehler}
+    \setlength{\leftmargin}{3cm}
+    \setlength{\rightmargin}{0,5cm}
+    \setlength{\labelsep}{0,5cm}
+    \setlength{\labelwidth}{2.5cm}
+    \setlength{\topsep}{0,5cm}
+    \setlength{\parskip}{0cm}
+    \setlength{\partopsep}{0cm}
+    \setlength{\parsep}{0cm}
+    \setlength{\itemsep}{0,2cm}
+    \setlength{\listparindent}{0cm}
+    }
+    }
+    {\end{list}}
+
+% Formeln > Abkürzungen
+% ======================
+\newcommand{\psip}{\dot{\psi}}
+\newcommand{\w}{\omega}
+\newcommand{\pfeil}{\longrightarrow}
+
+
+% Formeln
+% ========
+%für Matrizen
+\newcommand{\M}[1]{{\textbf{#1}}}
+
+%für Vektoren in Koordinatenschreibweise (=Spaltenmatrizen)
+\newcommand{\V}[1]{{\underline{#1}}}
+
+% Vektoren mit einzelnen Elementen mit eckigen Klammern
+\newcommand{\Vektor}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+
+%für komplexe Zahlen
+\newcommand{\K}[1]{{\overline{#1}}}
+
+%komplexe Vektoren
+\newcommand{\VK}[1]{\K{\V{#1}}}
+
+%komplexe Matrizen
+\newcommand{\KM}[1]{\overline{\bf#1}}
+
+%kleine Boxen in Formeln, mehrzeilig
+\newcommand{\txt}[1]{
+ \begin{minipage}{1.5 cm}
+ \vspace{1mm}
+ \begin{center} #1  \end{center}
+ \end{minipage}}
+
+%kleine Boxen in Formeln, gedrehter Text!
+\newcommand{\drehtxt}[1]{
+ \begin{minipage}{0.52 cm}
+ \vspace{10mm}
+ \begin{center}
+ \begin{rotate}{90}
+ \tiny
+ #1
+ \end{rotate}
+ \end{center}
+ \end{minipage}}
+
+\newcommand{\mf}[1]{{\mathbf{#1}}}
+
+% Datum Festlegen
+\newcommand{\OrtDatum}{Lippstadt, 25. Mai 2007}
+
+% Umlaute in Listings
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+
+% Abbildung heißt kurz Bild
+\renewcaptionname{ngerman}{\figurename}{Bild}

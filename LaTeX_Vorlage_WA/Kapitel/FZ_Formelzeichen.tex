@@ -1,0 +1,309 @@
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\chapter*{Formelzeichen, Abkürzungen und Koordinatensysteme}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\addcontentsline{toc}{chapter}{Formelzeichen, Abkürzungen und
+Koordinatensysteme} \markboth{Formelzeichen}{Formelzeichen}
+
+%abkürzender Befehl für das Formelverzeichnis (fvz)
+\newcommand\fvz[2]{
+  $#1$ & #2 \\
+}
+
+
+\textit{Selten benutzte Formelzeichen und Begriffe sowie abweichende
+Bedeutungen werden ausschlie{\ss}lich im Text erläutert. Es werden,
+falls nicht gesondert angegeben, SI-Einheiten ($\einh{m}$,
+$\einh{kg}$, $\einh{s}$, $\einh{rad}$) verwendet. Verwenden Sie ausschließlich die physikalisch richtige Schreibweise von Einheiten z.\,B. $v/\frac{km}{h}$.}
+
+
+%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Allgemeine Schreibweisen}
+%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+\fvz{a}
+ {Variable}
+
+\fvz{\dot{a}}
+ {zeitliche Ableitung der Variablen $a$}
+
+\fvz{\vec{a}}
+ {Vektor}
+
+\fvz{\V{a}}
+ {Spaltenmatrix, Vektor}
+
+\fvz{\M A}
+ {Matrix}
+
+\fvz{_K\V{a}_{BC}}
+ {Ortsvektor vom Punkt B nach C, angegeben im
+ Koordinatensystem K}
+
+\fvz{^{IK}\M{A}}
+ {Transformationsmatrix, die Spaltenmatrizen bzw. Vektoren vom
+ Koordinatensystem K in das System I transformiert}
+
+\fvz{\hat{a}}
+ {geschätzte Grö{\ss}e}
+
+\end{longtable}}
+%--------------------------------------------------------------------
+
+\newpage
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Lateinische Notation}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+\fvz{a}
+ {Beschleunigung}
+
+\fvz{b}
+ {Spurweite}
+
+\fvz{b_l}
+ {Abstand der linken Räder zum Schwerpunkt}
+
+\fvz{b_r}
+ {Abstand der rechten Räder zum Schwerpunkt}
+
+\fvz{c}
+ {Steifigkeit}
+
+\fvz{h_C}
+ {Schwerpunkthöhe über der Fahrbahn}
+
+\fvz{G}
+ {übertragungsfunktion}
+
+\fvz{_K\V{F}_G}
+ {Vektor der Gewichtskraft im Fahrzeugschwerpunkt, notiert im
+ Koordinatensystem $K$}
+
+\fvz{_K\V{F}_{ext}}
+ {Vektor der extern angreifenden Kräfte, notiert im
+ Koordinatensystem $K$}
+
+\fvz{_RF_{ix}}
+ {Kraft am Rad Nr. $i$ in $x$-Richtung des Koordinatensystems $R$, $i = 1,...,4$}
+
+\fvz{_R\V{F}_{i}}
+ {Kraftvektor am Rad Nr. $i$ im Koordinatensystem $R$, $i = 1,...,4$}
+
+\fvz{J_{zz}}
+ {Massenträgheitsmoment des Fahrzeugs um die Hochachse $z$}
+
+\fvz{l}
+ {Radstand}
+
+\fvz{l_h}
+ {Abstand der Hinterachse zum Schwerpunkt}
+
+\fvz{l_v}
+ {Abstand der Vorderachse zum Schwerpunkt}
+
+\fvz{m}
+ {Fahrzeugmasse}
+
+\fvz{_R\V{M}_{i}}
+ {Momentenvektor am Rad Nr. $i$ im Koordinatensystem $R$, $i = 1,...,4$}
+
+\fvz{p_i}
+ {Bremsdruck am Rad $i$, $i = 1,...,4$}
+
+\fvz{q_i}
+ {Kraftschluss bzw. Kraftschlussquotient des Rades Nr. $i$, $i = 1,...,4$}
+
+\fvz{r_{dyn}}
+ {dynamischer Reifenradius}
+
+\end{longtable}}
+%--------------------------------------------------------------------
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Griechische Notation}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+\fvz{\alpha}
+ {Schräg\-lauf\-winkel}
+
+\fvz{\beta}
+ {Schwimmwinkel im Fahrzeugschwerpunkt}
+
+\fvz{\gamma}
+ {Sturz}
+
+\fvz{\delta}
+ {Lenkwinkel}
+
+\fvz{\V{\epsilon}}
+ {Schätzfehler des Zustandsbeobachters}
+
+\fvz{\theta}
+ {Nickwinkel}
+
+\fvz{\lambda}
+ {Längsschlupf}
+
+\fvz{\mu, \mu_H, \mu_L}
+ {Reibwert, Hochreibwert, Niedrigreibwert}
+
+\fvz{\xi_1}
+ {Querneigung der Fahrbahn}
+
+\fvz{\xi_2}
+ {Längsneigung der Fahrbahn}
+
+\fvz{\tau}
+ {Nachlauf}
+
+\fvz{\varphi}
+ {Wankwinkel, Ausrichtungswinkel der ebenen Reifenkraft im Bezug
+ zur Reifenlängsachse}
+
+\fvz{\psi}
+ {Gierwinkel}
+
+\fvz{\omega_i}
+ {Kreis- bzw. Winkelgeschwindigkeit am Rad Nr. $i$, $i = 1,...,4$}
+
+\fvz{\zeta_1, \zeta_2}
+ {Verkippung des Fahrzeugkörpers gegenüber dem Inertialsystem $I$ in $_Ix$- und $_Iy$-Richtung}
+
+\end{longtable}}
+%--------------------------------------------------------------------
+
+\newpage
+
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Abkürzungen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+
+\fvz{\mbox{ABS}}
+  {\textbf{A}nti\textbf{b}lockier\textbf{s}ystem}
+
+\fvz{\mbox{BMW}}
+  {\textbf{B}ayrische \textbf{M}otoren \textbf{W}erke}
+
+\fvz{\mbox{C}}
+ {Fahrzeugschwerpunkt (engl. "`\textbf{c}enter of gravity"')}
+
+\fvz{\mbox{ESM}}
+  {\textbf{E}in\textbf{s}pur\textbf{m}odell}
+
+\fvz{\mbox{FDR}}
+  {\textbf{F}ahr\textbf{d}ynamik\textbf{r}egler}
+
+\fvz{\mbox{HR, HL}}
+ {\textbf{h}inten \textbf{r}echts, \textbf{h}inten \textbf{l}inks}
+
+\fvz{\mbox{LIDAR}}
+ {\textbf{Li}ght \textbf{D}etection \textbf{A}nd \textbf{R}anging,
+ Abstandssensor und Umgebungserfassung}
+
+\fvz{\mbox{VR, VL}}
+ {\textbf{v}orne \textbf{r}echts, \textbf{v}orne \textbf{l}inks}
+
+\fvz{x}
+ {Längsachse des jeweiligen Koordinatensystems}
+
+\fvz{y}
+ {Querachse des jeweiligen Koordinatensystems}
+
+\fvz{z}
+ {Hochachse des jeweiligen Koordinatensystems}
+\end{longtable}}
+%--------------------------------------------------------------------
+
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Indizes}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+\fvz{0}
+ {nomineller Wert/Referenzwert}
+
+\fvz{\mbox{A}}
+ {Antrieb}
+
+\fvz{\mbox{B}}
+ {Bremse}
+
+\fvz{\mbox{C}}
+ {Fahrzeugschwerpunkt (engl. "`center of gravity"')}
+
+\fvz{\mbox{F}}
+ {Fahrer}
+
+\fvz{\mbox{HR, HL}}
+ {hinten rechts, hinten links}
+
+\fvz{i}
+ {Radnummer, $i = 1,2,3,4$ (VR, VL, HL, HR)}
+
+\fvz{j}
+ {Achsenindex, $j = v, h$}
+
+\fvz{\mbox{l}}
+ {links}
+
+\fvz{\mbox{r}}
+ {rechts}
+
+\fvz{\mbox{R}}
+ {Regler oder Reifen}
+
+\fvz{\mbox{VR, VL}}
+ {vorne rechts, vorne links}
+
+\end{longtable}}
+%--------------------------------------------------------------------
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection*{Koordinatensysteme}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\textit{Zur Definition der Koordinatensysteme siehe Abbildung
+\ref{Bild_TG_Koordinatensysteme} und zur Drehreihenfolge Tabelle
+\ref{Tabelle_TG_Koordinatentransformation} auf Seite
+\pageref{Tabelle_TG_Koordinatentransformation}.}
+
+%-----------------------------Tabelle--------------------------------
+{\renewcommand{\arraystretch}{1.5} \tabcolsep=0.3cm
+\begin{longtable}{>{\RaggedRight}p{20mm} >{\RaggedRight}p{135mm}}
+
+\fvz{B}
+ {horizontiertes Bahnkoordinatensystem, tangential zur Bahn
+ des Fahrzeugschwerpunkts}
+
+\fvz{H}
+ {horizontiertes, Fahrzeugkörper festes Koordinatensystem}
+
+\fvz{I}
+ {Inertiales, ortsfestes Koordinatensystem}
+
+\fvz{K}
+ {körperfestes Fahrzeug-Koordinatensystem}
+
+\fvz{R_i}
+ {Radträger festes Radkoordinatensystem des Rads $i$}
+
+\end{longtable}}
+%--------------------------------------------------------------------

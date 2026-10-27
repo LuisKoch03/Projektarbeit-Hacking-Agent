@@ -1,0 +1,280 @@
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Kapitel-----XXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%Kapitel Vorlage für Bilder, Formeln, etc......
+\chapter{Vorlagen für LaTeX}
+\label{Kapitel_Vorlage}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Sektion-----XXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\section{Sektion Vorlage}
+\label{Sektion_Vorlage}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Subsektion--XXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsection{Subsektion Vorlage}
+\label{Subsektion_Vorlagen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----MiniSek--------XXXXXXXXXXXXXXXXXXXXXXXX
+\minisec{MiniSek} \label{MiniSek_Vorlagen}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+%XXXXXXXXXXXXXXXXXXXXXXXX-----Paragraf-------XXXXXXXXXXXXXXXXXXXXXXXX
+\paragraph{Paragraf Vorlage} \label{Paragraf_}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ \label{Gleichung_1}
+\end{equation}
+%--------------------------------------------------------------------
+
+
+%-----------------------------mehrere Gleichungen--------------------
+\begin{eqnarray}
+\label{Gleichung_2}
+ \nonumber
+ &=&
+ \\
+ &=&
+ \\
+\end{eqnarray}
+%--------------------------------------------------------------------
+
+
+%-----------------------------Aufzählung-----------------------------
+\begin{Aufzaehlung}{$\bullet$}
+\item
+blabla
+\item
+blabla
+\end{Aufzaehlung}
+%--------------------------------------------------------------------
+
+
+
+%Ein Bild kann man so "`einbinden"': (Der Ausdruck "`clip="'
+%verhindert, dass das Bild über seine
+%Boundingbox überläuft, das hei{\ss}t es ist auf keinen Fall grö{\ss}er!)
+%
+
+
+%///////////////////////////// Bild /////////////////////////////////
+\begin{figure}[h!]\begin{center}
+ \includegraphics[width=\BildBreiteGross, clip=]{Calvin_und_Hobbes2}
+ %[width=15cm,height=8cm,scale=0.5,angle=45]
+ \caption{Calvin und Hobbes \cite{Watterson2013}}
+ %\label{Bild_}
+\end{center}\end{figure}
+%////////////////////////////////////////////////////////////////////
+
+%///////////////////////////// 2 Bilder nebeneinander ///////////////
+\begin{figure}[h!]\centering
+ \subfloat[Bildbeschreibung subfigure 1]
+    {\label{Bild_subfigure_1}
+    \includegraphics[width=\BildSubfigureBreite]{Calvin_und_Hobbes2}}
+ \subfloat[Bildbeschreibung subfigure 2]
+    {\label{Bild_subfigure_2}
+    \includegraphics[width=\BildSubfigureBreite]{Calvin_und_Hobbes2}}
+ \caption{Hauptbildunterschrift}
+\end{figure}
+%////////////////////////////////////////////////////////////////////
+
+\begin{figure}[h!]\centering
+\captionsetup[subfloat]{labelformat=empty} % (a), (b) unterdrücken
+ \subfloat[]
+    {\label{fig:Bild_subfigure_1}
+    \includegraphics[width=0.45\textwidth]{Calvin_und_Hobbes2}}
+    \hspace{0.5 cm}
+ \subfloat[]
+    {\label{fig:Bild_subfigure_2}
+    \includegraphics[width=0.45\textwidth]{Calvin_und_Hobbes2}}
+ \caption{Zählpfeile und Vorzeichen des Stromes}
+ \captionsetup[subfloat]{labelformat=parens}
+\end{figure}
+
+% Beschrifttung unterdrückt
+
+%-----------------------------Tabelle--------------------------------
+\begin{table}[h!]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|p{5.3cm}|p{10cm}|} \hline
+    t&t
+    \\\hline\hline
+    t&t
+    \\\hline
+    \end{tabular}
+  \caption{Versuchstabelle}
+  \label{Tabelle_Versuch}
+\end{table}
+%--------------------------------------------------------------------
+
+
+
+
+%-----------------------------Aufzählung-----------------------------
+\begin{list}{\bullet}{
+ \setlength{\leftmargin}{4cm}
+ \setlength{\labelsep}{1cm}
+ \setlength{\labelwidth}{4cm}}
+
+\item[Punkt 1] bla bla bla ldfkjasdhfjlk hjkadhfas jk
+dkashfjkas hjkdf hajks ajd jkf
+
+\item[Punkt 2]
+
+\item[Punkt 3]
+
+\end{list}
+%--------------------------------------------------------------------
+
+
+
+
+
+Rotierter Text (erst in ps oder pdf sichtbar):
+
+\begin{rotate}{90}
+Rotiert?
+\end{rotate}
+
+\vspace{2cm}
+
+\begin{rotate}{90}
+$H + 4 -\frac{3}{4}$
+\end{rotate}
+
+
+
+
+$_K\vec{r}_{C2} = [l_{C2} \quad 0 \quad 0 ]^T$
+
+ $_I\vec{e}_1$
+
+Gänsefüsschen   "`Text"'
+
+Einheiten:
+
+$[\frac{kgm^2}{s}]$ für die Dämpfung
+
+$[\frac{rad}{s}]$ für Winkelgeschwindigkeiten
+
+$[\frac{kgm^2rad}{s^2}]$ für die Reibung
+
+
+
+$_I\vec{e}_1$
+
+$\dot{q}_2x$
+
+
+Link auf eine Homepage
+\href{http://de.wikipedia.org/wiki/Welt}{hier}
+
+
+
+Matrizen kann man als "`Tabellen"' aufschreiben:
+%--------------------------------------------------------------------
+ %\begin{displaymath} {^{KI}\mf{A}=}
+%\label{Matrix_A_K_I_Beispiel} \left(
+%\begin{array}{ccc}
+
+%\cos{q_2}\cos{\beta}+\sin{q_2}\sin{\alpha}\sin{\beta}
+%&\sin{q_2}\cos{\alpha}
+%&-\cos{q_2}\sin{\beta}+\sin{q_2}\sin{\alpha}\cos{\beta}\\
+
+%-\sin{q_2}\cos{\beta} + \cos{q_2}\sin{\alpha}\sin{\beta}
+%&\cos{q_2}\cos{\alpha}
+%&\sin{q_2}\sin{\beta}+\cos{q_2}\sin{\alpha}\cos{\beta}\\
+
+%\cos{\alpha}\cos{\beta} &-\sin{\alpha}
+%&\cos{\alpha}\cos{\beta}
+
+%\end{array}
+%\right)
+%\end{displaymath}\\
+%--------------------------------------------------------------------
+
+
+
+Matrizen kann man besser so aufschreiben:
+%--------------------------------------------------------------------
+%\begin{equation}
+%^{KI}\mf{A}=
+%\begin{pmatrix}
+%
+%\cos{\beta}        &0       &-\sin{\beta}\\
+%
+%0                  &1       &0\\
+%
+%\sin{\beta}        &0       &\cos{\beta}
+%
+%\end{pmatrix}
+%\end{equation}
+%--------------------------------------------------------------------
+
+
+Für Vektoren
+%--------------------------------------------------------------------
+\begin{equation}\label{Matrix_A_K_alpha_Beispiel}
+\boxed{ _K\vec{r}_{C2}=
+\begin{pmatrix}
+ls2\\0\\0
+\end{pmatrix}}
+\end{equation}
+%--------------------------------------------------------------------
+
+
+Aufzählung selbst gestalten:
+\begin{list}{$\bullet$}{\setlength
+        {\leftmargin}{0.5cm}}
+        \item Zusatzlenkwinkel durch das AFS-System
+        \item Stellung eines Zusatzmoments
+\end{list}
+
+
+
+
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\section{Sektion Versuche}
+\label{Sektion_Versuche}
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Test für Formelzeichen: Im Text funktioniert diese mbox gut:
+\mbox{$x = y$}.
+%-----------------------------Gleichung------------------------------
+\begin{equation}
+ Sogar in Formeln kann man die mbox mit integrierter Formel
+ verwenden:
+ x = y, \mbox{$x = y$}
+\end{equation}
+%--------------------------------------------------------------------
+
+
+Partialbruchzerlegung:
+%--------------------------------------------------------------------
+\begin{eqnarray*}
+ f(t) = \frac{As + B}{s^3(J s^2 + d s + c)} &=&
+ -{\frac {cJB+dcA-{d}^{2}B}{{c}^{3}s}}
+ \\
+ &&
+ +{\frac {cA-dB}{{c}^{2}{s}^{2}}}
+ +{\frac {B}{c{s}^{3}}}
+ \\
+ &&
+ +{\frac
+ {-{d}^{3}B-J{c}^{2}A+2\,cJdB+{d}^{2}cA+s{J}^{2}cB+sJdcA
+ -sJ{d}^{2}B}{{c}^{3}\left
+ (J{s}^{2}+ds+c\right )}}
+\end{eqnarray*}
+%--------------------------------------------------------------------
