@@ -259,18 +259,20 @@ def zap_scan(
     timeout_seconds: int = 600,
     max_alerts: int = 50,
 ) -> str:
-    """Scan an explicitly authorized web target with the local OWASP ZAP service.
+    """Scannt ein Webziel mit dem lokalen OWASP-ZAP-Dienst.
 
-    ``passive`` crawls the target with ZAP's traditional spider and then waits
-    for passive analysis. ``active`` additionally sends attack payloads and may
-    modify application state; use it only after the user explicitly confirms
-    ownership or permission, and then set ``authorization_confirmed`` to true.
-    The target hostname must also be listed in ``ZAP_ALLOWED_HOSTS`` in .env.
+    ``passive`` crawlt das Ziel mit ZAPs herkömmlichem Spider und wartet
+    anschließend die passive Analyse ab. 
+    ``active`` sendet zusätzlich Angriffstest-Payloads und kann den Anwendungszustand 
+    verändern. Setze dann ``authorization_confirmed`` auf true.
+    Der Ziel-Hostname muss außerdem in ``ZAP_ALLOWED_HOSTS`` in der .env-Datei
+    aufgeführt sein.
 
-    For a web application exposed from the Windows host to Docker, use a URL
-    such as ``http://host.docker.internal:3000`` rather than localhost.
-    ``timeout_seconds`` limits the entire workflow. The result is JSON with
-    risk counts and up to ``max_alerts`` detailed alerts.
+    Für eine Webanwendung, die vom Windows-Host aus Docker erreichbar ist,
+    verwende eine URL wie ``http://host.docker.internal:3000`` statt localhost.
+    ``timeout_seconds`` begrenzt die Laufzeit des gesamten Ablaufs. Das Ergebnis
+    ist JSON mit der Anzahl der Befunde je Risiko sowie bis zu ``max_alerts``
+    detaillierten Befunden.
     """
     return _zap_scan_impl(
         target_url=target_url,
