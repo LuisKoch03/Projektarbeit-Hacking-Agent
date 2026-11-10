@@ -28,6 +28,6 @@ def create_agent(
     settings = settings or Settings.from_env()
     return langchain_create_agent(
         model=create_model(settings),
-        tools=list(TOOLS if tools is None else tools),
+        tools=list(TOOLS if settings.enable_tools and tools is None else tools or []),
         system_prompt=settings.system_prompt,
     )

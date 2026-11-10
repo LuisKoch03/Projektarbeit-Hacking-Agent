@@ -1,6 +1,13 @@
-"""Tools that can be used by the project agent."""
+"""General tools that can be used by the project agent."""
 
 from langchain.tools import tool
+
+from .hashcat_tools import (
+    HASHCAT_TOOLS,
+    hashcat_version,
+    identify_hash_folder,
+    run_hashcat,
+)
 
 
 @tool
@@ -13,4 +20,4 @@ def get_project_overview() -> str:
     )
 
 
-TOOLS = [get_project_overview]
+TOOLS = [get_project_overview, *HASHCAT_TOOLS]

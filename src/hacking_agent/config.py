@@ -14,6 +14,7 @@ class Settings:
     base_url: str = "https://api.nano-gpt.com/api/v1"
     model: str = "minimax/minimax-m2.7"
     temperature: float = 0.0
+    enable_tools: bool = True
     system_prompt: str = (
         "You are a helpful assistant for the Projektarbeit Hacking Agent. "
         "Be accurate, clear, and explicit about uncertainty."
@@ -31,23 +32,28 @@ class Settings:
             )
 
         base_url = os.getenv("BASE_URL", cls.base_url).strip() or cls.base_url
-        model = os.getenv("ODEL", cls.model).strip() or cls.model
-        system_prompt = os.getenv("YSTEM_PROMPT", cls.system_prompt).strip()
+        model = os.getenv("MODEL", cls.model).strip() or cls.model
+        system_prompt = os.getenv("SYSTEM_PROMPT", cls.system_prompt).strip()
         if not system_prompt:
-            raise ValueError("YSTEM_PROMPT must not be empty.")
+            raise ValueError("SYSTEM_PROMPT must not be empty.")
         temperature_text = os.getenv("EMPERATURE", str(cls.temperature))
         try:
             temperature = float(temperature_text)
         except ValueError as error:
-            raise ValueError("OPENAI_TEMPERATURE must be a number.") from error
+            raise ValueError("TEMPERATURE must be a number.") from error
 
         if not 0 <= temperature <= 2:
-            raise ValueError("OPENAI_TEMPERATURE must be between 0 and 2.")
+            raise ValueError("TEMPERATURE must be between 0 and 2.")
+
+        enable_tools_text = os.getenv("ENABLE_TOOLS", "true").strip().lower()
+        if enable_tools_text not in {"true", "false"}:
+            raise ValueError("ENABLE_TOOLS must be true or false.")
 
         return cls(
             api_key=api_key,
             base_url=base_url,
             model=model,
             temperature=temperature,
+            enable_tools=enable_tools_text == "true",
             system_prompt=system_prompt,
         )

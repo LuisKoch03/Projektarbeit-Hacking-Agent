@@ -50,7 +50,15 @@ def main() -> int:
             result = agent.invoke({"messages": messages})
         except (OSError, OpenAIError) as error:
             messages.pop()
-            print(f"Unable to contact API: {error}", file=sys.stderr)
+            error_text = str(error)
+            if "does not support tool calls" in error_text:
+                print(
+                    "The configured model does not support tool calls. "
+                    "Choose a tool-capable model or set ENABLE_TOOLS=false.",
+                    file=sys.stderr,
+                )
+            else:
+                print(f"Unable to contact API: {error}", file=sys.stderr)
             return 1
 
         response = result["messages"][-1]
