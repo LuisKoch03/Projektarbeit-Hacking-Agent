@@ -141,6 +141,18 @@ Juice-Shop-Port direkt pruefen:
 nmap -sV -p 3000 127.0.0.1
 ```
 
+## Hashcat
+
+Installation pruefen:
+
+```powershell
+hashcat --version
+```
+
+Ist Hashcat nicht im `PATH`, kann in `.env` der vollstaendige Pfad mit
+`HASHCAT_PATH` konfiguriert werden. Weitere Hinweise stehen in
+[HASHCAT_SETUP.md](HASHCAT_SETUP.md).
+
 ## Beispielanfragen an den Agenten
 
 Passiver ZAP-Scan:

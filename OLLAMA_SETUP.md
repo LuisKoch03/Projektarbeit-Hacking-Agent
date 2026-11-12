@@ -51,6 +51,7 @@ BASE_URL=http://localhost:11434/v1
 API_KEY=
 MODEL=
 TEMPERATURE=0.0
+ENABLE_TOOLS=true
 ```
 
 Bei leerem `MODEL` fragt das Programm beim Start nach einem der installierten
@@ -68,8 +69,9 @@ hacking-agent
 ```
 
 Unterstuetzt das gewaehlte Modell keine Tool-Aufrufe, schaltet das Programm auf
-normalen Chat ohne Projekt-Tools um. Fuer Nmap und ZAP ist deshalb ein Modell
-mit Tool Calling erforderlich.
+normalen Chat ohne Projekt-Tools um. Fuer Nmap, ZAP und Hashcat ist deshalb ein
+Modell mit Tool Calling erforderlich. Mit `ENABLE_TOOLS=false` koennen alle
+Projekt-Tools auch ausdruecklich deaktiviert werden.
 
 ## Externer OpenAI-kompatibler Dienst
 

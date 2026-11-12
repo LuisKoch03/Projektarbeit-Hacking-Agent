@@ -8,8 +8,10 @@ Ollama-Modell eingesetzt.
 Der Agent verbindet die dialogbasierte Planung eines Sprachmodells mit
 konkret begrenzten Sicherheitstools. Nmap untersucht Hosts, Ports und Dienste.
 OWASP ZAP untersucht Webanwendungen mit Spider-, Passive- und optionalen
-Active-Scans. ZAP wird reproduzierbar als Docker-Service bereitgestellt,
-waehrend Nmap derzeit direkt auf dem Windows-System ausgefuehrt wird.
+Active-Scans. Hashcat identifiziert Hash-Typen und fuehrt explizit angeforderte
+Passwort-Audits mit lokalen Hash- und Wortlisten-Dateien aus. ZAP wird
+reproduzierbar als Docker-Service bereitgestellt, waehrend Nmap und Hashcat
+derzeit direkt auf dem Windows-System ausgefuehrt werden.
 
 Sicherheitsfunktionen duerfen ausschliesslich gegen eigene Systeme oder Ziele
 verwendet werden, fuer die eine ausdrueckliche Genehmigung vorliegt. Aktive
@@ -21,4 +23,5 @@ Die Einrichtung und Bedienung sind in separaten Dokumenten beschrieben:
 - [Ollama einrichten](OLLAMA_SETUP.md)
 - [Nmap einrichten](NMAP_SETUP.md)
 - [OWASP ZAP einrichten](ZAP_SETUP.md)
+- [Hashcat einrichten](HASHCAT_SETUP.md)
 - [Wichtige Befehle](COMMANDS.md)

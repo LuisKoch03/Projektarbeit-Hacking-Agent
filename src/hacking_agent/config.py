@@ -15,6 +15,7 @@ class Settings:
     model: str = ""
     provider: str = "ollama"
     temperature: float = 0.0
+    enable_tools: bool = True
     system_prompt: str = (
         "You are a helpful assistant for the Projektarbeit Hacking Agent. "
         "Be accurate, clear, and explicit about uncertainty. Only use security "
@@ -36,7 +37,11 @@ class Settings:
                 "API_KEY is not set. Copy .env.example to .env and add your API key."
             )
 
-        default_url = cls.base_url if provider == "ollama" else "https://api.nano-gpt.com/api/v1"
+        default_url = (
+            cls.base_url
+            if provider == "ollama"
+            else "https://api.nano-gpt.com/api/v1"
+        )
         base_url = os.getenv("BASE_URL", default_url).strip() or default_url
         model = os.getenv("MODEL", cls.model).strip() or cls.model
         if provider == "openai" and not model:
@@ -52,6 +57,9 @@ class Settings:
 
         if not 0 <= temperature <= 2:
             raise ValueError("TEMPERATURE must be between 0 and 2.")
+        enable_tools_text = os.getenv("ENABLE_TOOLS", "true").strip().lower()
+        if enable_tools_text not in {"true", "false"}:
+            raise ValueError("ENABLE_TOOLS must be true or false.")
 
         return cls(
             api_key=api_key,
@@ -59,5 +67,6 @@ class Settings:
             base_url=base_url,
             model=model,
             temperature=temperature,
+            enable_tools=enable_tools_text == "true",
             system_prompt=system_prompt,
         )
