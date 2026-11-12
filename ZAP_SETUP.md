@@ -78,7 +78,7 @@ Das heruntergeladene ZAP-Image bleibt dabei erhalten.
 
 ## Naechster Entwicklungsschritt
 
-Das Agent-Tool `zap_scan` ist in `src/hacking_agent/tools.py` registriert. Es
+Das Agent-Tool `zap_scan` ist in `src/hacking_agent/tools/zap.py` definiert. Es
 nutzt den laufenden Container ueber `ZAP_BASE_URL` und akzeptiert nur Hosts aus
 `ZAP_ALLOWED_HOSTS`.
 

@@ -1,18 +1,16 @@
-"""Tools that can be used by the project agent."""
+"""OWASP ZAP tool for authorized web scans."""
 
 from collections import Counter
 import json
 import os
-import shutil
-import subprocess
 import time
 from typing import Literal
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit, urlunsplit
 from urllib.request import ProxyHandler, build_opener
 
-from langchain.tools import tool
 from dotenv import load_dotenv
+from langchain.tools import tool
 
 
 class ZapError(RuntimeError):
@@ -41,7 +39,6 @@ def _zap_api(
         f"{base_url.rstrip('/')}/JSON/{component}/{operation_type}/{operation}/?"
         f"{urlencode(query)}"
     )
-    # Ignore system proxy variables for the local ZAP control connection.
     opener = build_opener(ProxyHandler({}))
     try:
         with opener.open(url, timeout=max(0.1, timeout_seconds)) as response:
@@ -127,7 +124,6 @@ def _validated_zap_target(target_url: str, allowed_hosts: set[str]) -> str:
             f"Target host '{hostname}' is not in ZAP_ALLOWED_HOSTS. "
             "Add it to .env only after confirming that the target is authorized."
         )
-    # Fragments are client-side only and should not be sent as scan targets.
     return urlunsplit((parsed.scheme, parsed.netloc, parsed.path or "/", parsed.query, ""))
 
 
@@ -259,7 +255,7 @@ def zap_scan(
     timeout_seconds: int = 600,
     max_alerts: int = 50,
 ) -> str:
-    """Scan an explicitly authorized web target with the local OWASP ZAP service.
+    """Scan a web target with the local OWASP ZAP service.
 
     ``passive`` crawls the target with ZAP's traditional spider and then waits
     for passive analysis. ``active`` additionally sends attack payloads and may
@@ -279,85 +275,3 @@ def zap_scan(
         timeout_seconds=timeout_seconds,
         max_alerts=max_alerts,
     )
-
-
-@tool
-def get_project_overview() -> str:
-    """Return a short overview of this project."""
-    return (
-        "This project is a Python framework for a LangChain agent using "
-        "OpenAI-compatible API. More tools and project-specific "
-        "functionality can be added in hacking_agent/tools.py."
-    )
-
-
-@tool
-def nmap_scan(
-    arguments: list[str],
-    timeout_seconds: int = 600,
-) -> str:
-    """Run locally installed Nmap with arbitrary command-line arguments.
-
-    Use only on systems the user owns or is explicitly authorized to scan.
-    Supply every token after ``nmap`` as a separate list item; do not include
-    the executable itself or shell syntax. Targets are part of the argument
-    list, so multiple hosts, CIDR networks, target ranges, and target-related
-    options are supported.
-
-    Examples:
-    ``["-sT", "-sV", "-p", "22,80,443", "192.168.1.10"]``
-    ``["-sn", "192.168.1.0/24"]``
-    ``["-sU", "--top-ports", "20", "--reason", "host.example"]``
-    ``["-O", "--osscan-guess", "-T4", "10.0.0.5"]``
-    ``["-V"]`` or ``["--iflist"]``
-
-    Nmap options that need a value must use a separate list item unless Nmap
-    documents an equals form. For example use ``["-p", "1-1000", TARGET]``.
-    ``timeout_seconds`` is the wrapper's process timeout (1 to 3600 seconds),
-    independent of Nmap's own ``--host-timeout`` option. The tool returns
-    Nmap's combined text output.
-    """
-    if not arguments:
-        return "Error: arguments must contain at least one Nmap option or target."
-    if not 1 <= timeout_seconds <= 3600:
-        return "Error: timeout_seconds must be between 1 and 3600."
-
-    normalized_arguments: list[str] = []
-    for argument in arguments:
-        if not isinstance(argument, str):
-            return "Error: every Nmap argument must be a string."
-        if not argument or "\x00" in argument or "\r" in argument or "\n" in argument:
-            return "Error: Nmap arguments must be non-empty single-line strings."
-        normalized_arguments.append(argument)
-
-    executable = shutil.which("nmap")
-    if executable is None:
-        return "Error: Nmap was not found in PATH. Install Nmap and restart the terminal."
-
-    # A list plus shell=False passes arguments to Nmap verbatim instead of
-    # interpreting them as PowerShell or cmd commands.
-    command = [executable, *normalized_arguments]
-    try:
-        result = subprocess.run(
-            command,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=timeout_seconds,
-            shell=False,
-        )
-    except subprocess.TimeoutExpired:
-        return f"Error: Nmap scan exceeded {timeout_seconds} seconds and was stopped."
-    except OSError as error:
-        return f"Error: could not start Nmap: {error}"
-
-    output = result.stdout.strip()
-    if result.stderr.strip():
-        output += f"\n{result.stderr.strip()}"
-    if result.returncode:
-        return f"Error: Nmap exited with code {result.returncode}.\n{output}".strip()
-    return output.strip() or "Nmap finished without output."
-
-
-TOOLS = [get_project_overview, nmap_scan, zap_scan]
