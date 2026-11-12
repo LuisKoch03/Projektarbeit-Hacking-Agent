@@ -20,7 +20,10 @@ class Settings:
         "You are a helpful assistant for the Projektarbeit Hacking Agent. "
         "Be accurate, clear, and explicit about uncertainty. Only use security "
         "scanning tools against targets the user owns or is explicitly authorized "
-        "to test. Never run an active web scan without explicit confirmation."
+        "to test. Never run an active web scan without explicit confirmation. "
+        "For Hashcat dictionary audits, use the configured HASHCAT_WORDLIST or "
+        "list_hashcat_wordlists before selecting a relative wordlist_name. Never "
+        "invent or pass an absolute wordlist path."
     )
 
     @classmethod

@@ -9,7 +9,8 @@ Der Agent verbindet die dialogbasierte Planung eines Sprachmodells mit
 konkret begrenzten Sicherheitstools. Nmap untersucht Hosts, Ports und Dienste.
 OWASP ZAP untersucht Webanwendungen mit Spider-, Passive- und optionalen
 Active-Scans. Hashcat identifiziert Hash-Typen und fuehrt explizit angeforderte
-Passwort-Audits mit lokalen Hash- und Wortlisten-Dateien aus. ZAP wird
+Passwort-Audits mit Hash-Dateien oder direkt angegebenen Hashes sowie mit
+Wortlisten oder begrenzten Bruteforce-Masken aus. ZAP wird
 reproduzierbar als Docker-Service bereitgestellt, waehrend Nmap und Hashcat
 derzeit direkt auf dem Windows-System ausgefuehrt werden.
 

@@ -1,6 +1,11 @@
 """Tools exposed to the LangChain agent."""
 
-from .hashcat import hashcat_version, identify_hash_folder, run_hashcat
+from .hashcat import (
+    hashcat_version,
+    identify_hash_folder,
+    list_hashcat_wordlists,
+    run_hashcat,
+)
 from .nmap import nmap_scan
 from .project_info import get_project_overview
 from .zap import zap_scan
@@ -11,6 +16,7 @@ TOOLS = [
     zap_scan,
     hashcat_version,
     identify_hash_folder,
+    list_hashcat_wordlists,
     run_hashcat,
 ]
 
@@ -19,6 +25,7 @@ __all__ = [
     "get_project_overview",
     "hashcat_version",
     "identify_hash_folder",
+    "list_hashcat_wordlists",
     "nmap_scan",
     "run_hashcat",
     "zap_scan",
