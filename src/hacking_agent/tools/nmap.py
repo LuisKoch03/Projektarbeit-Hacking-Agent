@@ -4,14 +4,17 @@ import shutil
 import subprocess
 
 from langchain.tools import tool
+from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+COMPOSE_FILE = PROJECT_ROOT / "compose.yaml"
 
 @tool
 def nmap_scan(
     arguments: list[str],
     timeout_seconds: int = 600,
 ) -> str:
-    """Run locally installed Nmap with arbitrary command-line arguments.
+    """Run Nmap in a temporary Docker container with arbitrary arguments.
 
     Use only on systems the user owns or is explicitly authorized to scan.
     Supply every token after ``nmap`` as a separate list item; do not include
@@ -20,11 +23,30 @@ def nmap_scan(
     options are supported.
 
     Examples:
+
+    Scan a service running on the Windows host:
+    ``["-sT", "-sV", "-p", "3000", "host.docker.internal"]``
+
+    Scan the ZAP service in the same Docker Compose network:
+    ``["-sT", "-sV", "-p", "8090", "zap"]``
+
+    Scan an authorized device in the local network:
     ``["-sT", "-sV", "-p", "22,80,443", "192.168.1.10"]``
+
+    Discover authorized hosts in a local subnet:
     ``["-sn", "192.168.1.0/24"]``
-    ``["-sU", "--top-ports", "20", "--reason", "host.example"]``
-    ``["-O", "--osscan-guess", "-T4", "10.0.0.5"]``
-    ``["-V"]`` or ``["--iflist"]``
+
+    Run an authorized UDP scan:
+    ``["-sU", "--top-ports", "20", "--reason", "192.168.1.10"]``
+
+    Run authorized operating-system detection:
+    ``["-O", "--osscan-guess", "-T4", "192.168.1.10"]``
+
+    Show the Nmap version:
+    ``["--version"]``
+
+    Show the network interfaces inside the Nmap container:
+    ``["--iflist"]``
 
     Nmap options that need a value must use a separate list item unless Nmap
     documents an equals form. For example use ``["-p", "1-1000", TARGET]``.
@@ -45,14 +67,29 @@ def nmap_scan(
             return "Error: Nmap arguments must be non-empty single-line strings."
         normalized_arguments.append(argument)
 
-    executable = shutil.which("nmap")
-    if executable is None:
-        return "Error: Nmap was not found in PATH. Install Nmap and restart the terminal."
+    docker = shutil.which("docker")
+    if docker is None:
+        return "Error: Docker was not found in PATH."
 
-    command = [executable, *normalized_arguments]
+    if not COMPOSE_FILE.is_file():
+        return f"Error: Compose file was not found: {COMPOSE_FILE}"
+
+    command = [
+        docker,
+        "compose",
+        "-f",
+        str(COMPOSE_FILE),
+        "run",
+        "--rm",
+        "--no-deps",
+        "nmap",
+        *normalized_arguments,
+    ]
+
     try:
         result = subprocess.run(
             command,
+            cwd=PROJECT_ROOT,
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -63,7 +100,7 @@ def nmap_scan(
     except subprocess.TimeoutExpired:
         return f"Error: Nmap scan exceeded {timeout_seconds} seconds and was stopped."
     except OSError as error:
-        return f"Error: could not start Nmap: {error}"
+        return f"Error: could not start Docker/Nmap: {error}"
 
     output = result.stdout.strip()
     if result.stderr.strip():

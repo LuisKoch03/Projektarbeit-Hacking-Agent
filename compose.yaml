@@ -20,3 +20,21 @@ services:
       ZAP_PORT: "8090"
     restart: unless-stopped
 
+  nmap:
+    build:
+      context: .
+      dockerfile: Dockerfile.nmap
+    image: projektarbeit-nmap:local
+
+  hashcat:
+    build:
+      context: .
+      dockerfile: Dockerfile.hashcat
+    image: projektarbeit-hashcat:local
+    gpus: all
+    profiles:
+      - tools
+    working_dir: /data/work
+    volumes:
+      - ./wordlists:/data/wordlists:ro
+      - ./hashcat-work:/data/work

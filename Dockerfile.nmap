@@ -1,0 +1,21 @@
+##################################################################
+# Dockerfile for nmap (Original draft)
+##################################################################
+#FROM kalilinux/kali-rolling
+
+#RUN apt-get update && apt-get install -y nmap
+
+#ENTRYPOINT [ "nmap" ]
+#CMD ["--version"]
+
+##################################################################
+# Dockerfile for nmap
+##################################################################
+FROM kalilinux/kali-rolling
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends nmap \
+    && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["nmap"]
+CMD ["--version"]

@@ -1,0 +1,45 @@
+##################################################################
+# Dockerfile for hashcat (Original draft) without CUDA support
+##################################################################
+#FROM kalilinux/kali-rolling
+
+#RUN apt-get update && apt-get install -y hashcat
+
+#ENTRYPOINT [ "hashcat" ]
+#CMD ["--version"]
+
+##################################################################
+# Dockerfile for hashcat without CUDA support
+##################################################################
+# FROM kalilinux/kali-rolling
+
+# RUN apt-get update \
+#    && apt-get install -y --no-install-recommends hashcat \
+#    && rm -rf /var/lib/apt/lists/*
+
+#ENTRYPOINT ["hashcat"]
+#CMD ["--version"]
+
+##################################################################
+# Dockerfile for hashcat with CUDA support
+##################################################################
+
+FROM nvidia/cuda:12.9.2-runtime-ubuntu22.04 AS cuda-runtime
+FROM kalilinux/kali-rolling
+
+COPY --from=cuda-runtime /usr/local/cuda-12.9 /usr/local/cuda-12.9
+
+RUN ln -sfn /usr/local/cuda-12.9 /usr/local/cuda \
+    && ln -sfn \
+        /usr/local/cuda-12.9/targets/x86_64-linux/lib/libnvrtc.so.12 \
+        /usr/local/cuda-12.9/targets/x86_64-linux/lib/libnvrtc.so \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        hashcat \
+        ocl-icd-libopencl1 \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/targets/x86_64-linux/lib
+
+ENTRYPOINT ["hashcat"]
+CMD ["--version"] 
