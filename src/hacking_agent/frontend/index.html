@@ -13,7 +13,7 @@
     data-agent-state="working"  = laufende Sicherheitsanalyse
     data-agent-state="safe"     = Schutz-, Ergebnis- und Hilfemodus
 -->
-<body data-agent-state="safe">
+<body data-agent-state="safe" data-chat-state="new">
     <div class="ambient-grid" aria-hidden="true"></div>
 
     <div class="app-shell">
@@ -43,8 +43,8 @@
 
                 <div class="chat-list" aria-label="Gespeicherte Chats">
                     <a class="chat-entry current" href="#chat">
-                        <span class="chat-entry-title">Analyse des Testservers</span>
-                        <span class="chat-entry-date">Heute</span>
+                        <span class="chat-entry-title">Neuer Chat</span>
+                        <span class="chat-entry-date">Jetzt</span>
                     </a>
                     <a class="chat-entry" href="#chat-docker">
                         <span class="chat-entry-title">Docker-Umgebung prüfen</span>
@@ -63,35 +63,27 @@
                 </a>
 
                 <div class="tool-list" aria-label="Verfügbare Werkzeuge">
-                    <a class="tool-entry" href="#tools">
+                    <a class="tool-entry" href="#tools-nmap">
                         <span>Nmap</span>
                         <span class="tool-state inactive">Inaktiv</span>
                     </a>
-                    <a class="tool-entry" href="#tools">
+                    <a class="tool-entry" href="#tools-zap">
                         <span>OWASP ZAP</span>
                         <span class="tool-state inactive">Inaktiv</span>
                     </a>
-                    <a class="tool-entry" href="#tools">
+                    <a class="tool-entry" href="#tools-hashcat">
                         <span>Hashcat</span>
                         <span class="tool-state inactive">Inaktiv</span>
                     </a>
                 </div>
 
-                <a class="navigation-link" href="#project">
+                <a class="navigation-link project-link" href="#project">
                     <span class="navigation-icon" aria-hidden="true">▣</span>
                     Projektbeschreibung
                 </a>
             </nav>
 
-            <div class="sidebar-security">
-                <span class="sidebar-security-icon" aria-hidden="true">◆</span>
-                <div>
-                    <strong>Defensive Ausrichtung</strong>
-                    <span>Nur autorisierte Systeme</span>
-                </div>
-            </div>
-
-            <a class="settings-link" id="settings" href="#settings">
+            <a class="settings-link" href="#settings">
                 <span aria-hidden="true">⚙</span>
                 Einstellungen
             </a>
@@ -104,26 +96,9 @@
                         <p class="eyebrow">Aktive Sitzung</p>
                         <span class="auto-title-badge">Automatisch benannt</span>
                     </div>
-                    <h1>Analyse des Testservers</h1>
+                    <h1>Neuer Chat</h1>
                 </div>
 
-                <div class="topbar-status" aria-label="Systemstatus">
-                    <div class="agent-mode" aria-live="polite">
-                        <span class="mode-symbol safe-state" aria-hidden="true">◆</span>
-                        <span class="mode-symbol working-state" aria-hidden="true">&gt;_</span>
-                        <span class="safe-state">Schutzmodus</span>
-                        <span class="working-state">Analyse läuft</span>
-                    </div>
-
-                    <div class="connection-state">
-                        <span class="status-dot online" aria-hidden="true"></span>
-                        <span>Ollama</span>
-                    </div>
-                    <div class="connection-state">
-                        <span class="status-dot online" aria-hidden="true"></span>
-                        <span>Docker</span>
-                    </div>
-                </div>
             </header>
 
             <section class="conversation" aria-label="Chatverlauf">
@@ -144,39 +119,10 @@
                             erkläre Ergebnisse verständlich und helfe dir, deine Systeme
                             anschließend besser zu schützen.
                         </p>
-                    </div>
-                </section>
-
-                <section class="mode-panel" aria-label="Aktueller Agentenzustand">
-                    <div class="mode-panel-visual" aria-hidden="true">
-                        <div class="shield-rings">
-                            <div class="shield-core">
-                                <span class="safe-state">◆</span>
-                                <span class="working-state">&gt;_</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mode-panel-copy safe-state">
-                        <p class="mode-kicker">Schutzphase</p>
-                        <h3>Analyse abgeschlossen – System im Blick</h3>
-                        <p>
-                            Der Agent wartet auf deine nächste Frage und stellt Schutz,
-                            Einordnung und konkrete Empfehlungen in den Vordergrund.
-                        </p>
-                    </div>
-
-                    <div class="mode-panel-copy working-state">
-                        <p class="mode-kicker">Analysephase</p>
-                        <h3>Sicherheitsanalyse wird ausgeführt</h3>
-                        <p>
-                            Der Agent verarbeitet ausschließlich den bestätigten Auftrag.
-                            Aktivitäten und Ergebnisse werden nachvollziehbar protokolliert.
-                        </p>
-                    </div>
-
-                    <div class="mode-signal" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span>
+                        <a class="project-reference" href="#project">
+                            Weitere Informationen findest du in der Projektbeschreibung
+                            <span aria-hidden="true">→</span>
+                        </a>
                     </div>
                 </section>
 
@@ -289,13 +235,131 @@
                     </article>
                 </div>
 
-                <div class="authorization-notice">
-                    <span aria-hidden="true">◆</span>
+            </section>
+
+            <section class="settings-view" id="settings" aria-labelledby="settings-title">
+                <div class="settings-heading">
                     <div>
-                        <strong>Autorisierung erforderlich</strong>
-                        <p>Kein Werkzeug startet automatisch oder ohne einen bestätigten Auftrag.</p>
+                        <p class="eyebrow">Anwendung konfigurieren</p>
+                        <h2 id="settings-title">Einstellungen</h2>
+                        <p>Sprache und Modellverbindung für den Hacking Agent festlegen.</p>
                     </div>
+                    <span class="settings-state">Lokale Konfiguration</span>
                 </div>
+
+                <form class="settings-form">
+                    <fieldset class="settings-section language-section">
+                        <legend>Sprache</legend>
+                        <p class="settings-description">
+                            Sprache für Oberfläche, Hinweise und Antworten auswählen.
+                        </p>
+
+                        <div class="option-grid two-columns">
+                            <label class="choice-card">
+                                <input type="radio" name="language" value="de" checked>
+                                <span class="choice-marker" aria-hidden="true">DE</span>
+                                <span>
+                                    <strong>Deutsch</strong>
+                                    <small>Oberfläche auf Deutsch verwenden</small>
+                                </span>
+                            </label>
+
+                            <label class="choice-card">
+                                <input type="radio" name="language" value="en">
+                                <span class="choice-marker" aria-hidden="true">EN</span>
+                                <span>
+                                    <strong>English</strong>
+                                    <small>Use the interface in English</small>
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="settings-section model-section">
+                        <legend>Sprachmodell</legend>
+                        <p class="settings-description">
+                            Ein lokales Ollama-Modell oder eine OpenAI-kompatible API verwenden.
+                        </p>
+
+                        <div class="option-grid two-columns provider-options">
+                            <label class="choice-card">
+                                <input id="provider-local" type="radio" name="provider" value="ollama" checked>
+                                <span class="choice-marker terminal-marker" aria-hidden="true">&gt;_</span>
+                                <span>
+                                    <strong>Lokales LLM</strong>
+                                    <small>Modelle mit Ollama lokal ausführen</small>
+                                </span>
+                            </label>
+
+                            <label class="choice-card">
+                                <input id="provider-api" type="radio" name="provider" value="openai">
+                                <span class="choice-marker" aria-hidden="true">API</span>
+                                <span>
+                                    <strong>API-Verbindung</strong>
+                                    <small>OpenAI-kompatiblen Anbieter verbinden</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="model-panel local-model-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <span class="panel-kicker">Ollama</span>
+                                    <h3>Lokale Modelle</h3>
+                                </div>
+                                <span class="connection-label">Lokal</span>
+                            </div>
+
+                            <label class="field-label" for="local-model">Aktives Modell</label>
+                            <select id="local-model" name="local-model">
+                                <option value="">Installierte Modelle werden beim Start geladen</option>
+                                <option value="qwen3">Qwen 3</option>
+                                <option value="llama">Llama</option>
+                            </select>
+
+                            <div class="install-model">
+                                <div>
+                                    <label class="field-label" for="model-name">Weiteres Modell installieren</label>
+                                    <p>Ollama-Modellnamen eingeben, beispielsweise qwen3:8b.</p>
+                                </div>
+                                <div class="inline-field">
+                                    <input id="model-name" name="model-name" type="text" placeholder="modell:version">
+                                    <button type="button">Installieren</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="model-panel api-model-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <span class="panel-kicker">OpenAI-kompatibel</span>
+                                    <h3>API-Verbindung</h3>
+                                </div>
+                                <span class="connection-label">Extern</span>
+                            </div>
+
+                            <div class="form-grid">
+                                <label>
+                                    <span class="field-label">API-Endpunkt</span>
+                                    <input name="base-url" type="url" placeholder="https://api.example.com/v1">
+                                </label>
+                                <label>
+                                    <span class="field-label">Modell</span>
+                                    <input name="api-model" type="text" placeholder="Modell-ID">
+                                </label>
+                                <label class="full-width-field">
+                                    <span class="field-label">API-Key</span>
+                                    <input name="api-key" type="password" placeholder="API-Key eingeben" autocomplete="off">
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="settings-actions">
+                        <p>Änderungen werden erst nach dem Speichern übernommen.</p>
+                        <button type="submit">Einstellungen speichern</button>
+                    </div>
+                </form>
             </section>
 
             <footer class="composer-area">
