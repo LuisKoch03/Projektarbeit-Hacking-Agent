@@ -12,6 +12,8 @@ from urllib.request import ProxyHandler, build_opener
 from dotenv import load_dotenv
 from langchain.tools import tool
 
+from ..paths import PROJECT_ROOT
+
 
 class ZapError(RuntimeError):
     """Raised when the local ZAP service cannot complete a request."""
@@ -183,7 +185,7 @@ def _zap_scan_impl(
     if not 1 <= max_alerts <= 500:
         return "Error: max_alerts must be between 1 and 500."
 
-    load_dotenv()
+    load_dotenv(PROJECT_ROOT / ".env")
     base_url = os.getenv("ZAP_BASE_URL", "http://127.0.0.1:8090").strip()
     api_key = os.getenv("ZAP_API_KEY", "").strip()
     allowed_hosts_text = os.getenv(

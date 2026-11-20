@@ -7,7 +7,7 @@ import sys
 from openai import BadRequestError, OpenAI, OpenAIError
 
 from .config import Settings
-from .llm import create_agent
+from .llm import create_agent, ollama_model_capabilities
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,11 +21,18 @@ def build_parser() -> argparse.ArgumentParser:
 def select_ollama_model(settings: Settings) -> Settings:
     """Let the user choose an installed model from Ollama's model list."""
     with OpenAI(api_key="ollama", base_url=settings.base_url, timeout=10, max_retries=0) as client:
-        models = sorted({model.id for model in client.models.list()})
+        all_models = sorted({model.id for model in client.models.list()})
+    models = all_models
+    if settings.enable_tools:
+        models = [
+            model
+            for model in all_models
+            if "tools" in ollama_model_capabilities(settings, model)
+        ]
     if not models:
         raise ValueError(
-            "Keine Ollama-Modelle gefunden. Lade zuerst ein Modell mit "
-            "'ollama pull <modellname>' herunter."
+            "Keine passenden Ollama-Modelle gefunden. Für aktivierte Tools wird "
+            "ein Modell mit Tool-Calling-Unterstützung benötigt."
         )
     print("Verfügbare Ollama-Modelle:")
     for index, model in enumerate(models, start=1):
@@ -68,8 +75,6 @@ def main() -> int:
     prompt = args.prompt
     print(f"Model: {settings.model}")
     print("Chat started. Type 'exit' or 'quit' to stop.")
-    tools_disabled = False
-
     while True:
         if prompt is None:
             try:
@@ -91,18 +96,14 @@ def main() -> int:
             except BadRequestError as error:
                 if (
                     settings.provider != "ollama"
-                    or tools_disabled
                     or "does not support tools" not in str(error).lower()
                 ):
                     raise
-                print(
-                    f"{settings.model} unterstützt keine Tools. "
-                    "Chat wird ohne Projekt-Tools fortgesetzt."
+                raise ValueError(
+                    f"{settings.model} unterstützt keine Tools. Bitte ein "
+                    "toolfähiges Modell auswählen."
                 )
-                agent = create_agent(settings, tools=[])
-                tools_disabled = True
-                result = agent.invoke({"messages": messages})
-        except (OSError, OpenAIError) as error:
+        except (OSError, OpenAIError, ValueError) as error:
             messages.pop()
             print(f"Modellanfrage fehlgeschlagen: {error}", file=sys.stderr)
             return 1

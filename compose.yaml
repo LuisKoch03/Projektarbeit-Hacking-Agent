@@ -1,3 +1,17 @@
+name: projektarbeit-hacking-agent
+
+x-hashcat: &hashcat
+  build:
+    context: .
+    dockerfile: Dockerfile.hashcat
+  image: projektarbeit-hashcat:local
+  profiles:
+    - tools
+  working_dir: /data/work
+  volumes:
+    - ./wordlists:/data/wordlists:ro
+    - ./hashcat-work:/data/work
+
 services:
   zap:
     image: ghcr.io/zaproxy/zaproxy:stable
@@ -27,14 +41,8 @@ services:
     image: projektarbeit-nmap:local
 
   hashcat:
-    build:
-      context: .
-      dockerfile: Dockerfile.hashcat
-    image: projektarbeit-hashcat:local
+    <<: *hashcat
+
+  hashcat-gpu:
+    <<: *hashcat
     gpus: all
-    profiles:
-      - tools
-    working_dir: /data/work
-    volumes:
-      - ./wordlists:/data/wordlists:ro
-      - ./hashcat-work:/data/work

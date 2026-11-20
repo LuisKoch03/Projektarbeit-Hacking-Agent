@@ -18,5 +18,11 @@ dependencies = [
 [project.scripts]
 hacking-agent = "hacking_agent.cli:main"
 
+[project.gui-scripts]
+hacking-agent-gui = "hacking_agent.gui:main"
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6.0,<7.0"]
+
 [tool.setuptools.packages.find]
 where = ["src"]

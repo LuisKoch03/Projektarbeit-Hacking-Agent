@@ -8,11 +8,23 @@ import shutil
 
 from langchain.tools import tool
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-COMPOSE_FILE = PROJECT_ROOT / "compose.yaml"
+from ..paths import COMPOSE_FILE, PROJECT_ROOT
 
 CONTAINER_WORDLIST_DIR = "/data/wordlists"
 CONTAINER_WORK_DIR = "/data/work"
+
+
+def _hashcat_uses_gpu() -> bool:
+    """Choose the GPU service when NVIDIA is available, unless overridden."""
+    mode = os.getenv("HASHCAT_GPU", "auto").strip().lower()
+    if mode not in {"auto", "true", "false"}:
+        raise ValueError("HASHCAT_GPU must be auto, true or false.")
+    return mode == "true" or (mode == "auto" and shutil.which("nvidia-smi") is not None)
+
+
+def _hashcat_device_type() -> str:
+    """Return Hashcat's GPU (2) or CPU (1) device type."""
+    return "2" if _hashcat_uses_gpu() else "1"
 
 def _hashcat_timeout() -> float:
     """Return the validated process timeout configured for Hashcat."""
@@ -119,7 +131,7 @@ def _run_hashcat(
         "run",
         "--rm",
         "--no-deps",
-        "hashcat",
+        "hashcat-gpu" if _hashcat_uses_gpu() else "hashcat",
         *arguments,
     ]
 
@@ -378,7 +390,7 @@ def run_hashcat(
                     "-a",
                     str(attack_mode),
                     "-D",
-                    "2",
+                    _hashcat_device_type(),
                     container_hash_path,
                     *candidate_arguments,
                     "--potfile-disable",

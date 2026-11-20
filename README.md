@@ -10,9 +10,9 @@ konkret begrenzten Sicherheitstools. Nmap untersucht Hosts, Ports und Dienste.
 OWASP ZAP untersucht Webanwendungen mit Spider-, Passive- und optionalen
 Active-Scans. Hashcat identifiziert Hash-Typen und fuehrt explizit angeforderte
 Passwort-Audits mit Hash-Dateien oder direkt angegebenen Hashes sowie mit
-Wortlisten oder begrenzten Bruteforce-Masken aus. ZAP wird
-reproduzierbar als Docker-Service bereitgestellt, waehrend Nmap und Hashcat
-derzeit direkt auf dem Windows-System ausgefuehrt werden.
+Wortlisten oder begrenzten Bruteforce-Masken aus. ZAP wird als dauerhafter
+Docker-Service bereitgestellt. Nmap und Hashcat laufen bei Bedarf in
+kurzlebigen Docker-Containern.
 
 Sicherheitsfunktionen duerfen ausschliesslich gegen eigene Systeme oder Ziele
 verwendet werden, fuer die eine ausdrueckliche Genehmigung vorliegt. Aktive
@@ -26,3 +26,18 @@ Die Einrichtung und Bedienung sind in separaten Dokumenten beschrieben:
 - [OWASP ZAP einrichten](ZAP_SETUP.md)
 - [Hashcat einrichten](HASHCAT_SETUP.md)
 - [Wichtige Befehle](COMMANDS.md)
+
+## GUI und Windows-EXE
+
+Die GUI wird mit `hacking-agent-gui` gestartet. Sie listet lokale
+Ollama-Modelle auf und unterstuetzt alternativ eine OpenAI-kompatible API.
+
+```powershell
+python -m pip install -e ".[build]"
+.\build-exe.ps1
+```
+
+Die portable Testversion liegt danach unter
+`dist\HackingAgent\HackingAgent.exe`. Docker Desktop und Ollama muessen fuer
+diesen ersten VM-Test bereits installiert sein. Beim Start baut die Anwendung
+die Nmap- und Hashcat-Images bei Bedarf und startet ZAP automatisch.

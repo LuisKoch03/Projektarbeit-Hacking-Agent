@@ -4,10 +4,8 @@ import shutil
 import subprocess
 
 from langchain.tools import tool
-from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-COMPOSE_FILE = PROJECT_ROOT / "compose.yaml"
+from ..paths import COMPOSE_FILE, PROJECT_ROOT
 
 @tool
 def nmap_scan(

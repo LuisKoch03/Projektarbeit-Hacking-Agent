@@ -5,6 +5,8 @@ import os
 
 from dotenv import load_dotenv
 
+from .paths import PROJECT_ROOT
+
 
 @dataclass(frozen=True)
 class Settings:
@@ -29,7 +31,7 @@ class Settings:
     @classmethod
     def from_env(cls) -> "Settings":
         """Load settings from the environment and an optional .env file."""
-        load_dotenv()
+        load_dotenv(PROJECT_ROOT / ".env")
 
         provider = os.getenv("PROVIDER", cls.provider).strip().lower()
         if provider not in {"ollama", "openai"}:
@@ -43,7 +45,7 @@ class Settings:
         default_url = (
             cls.base_url
             if provider == "ollama"
-            else "https://api.nano-gpt.com/api/v1"
+            else "https://api.openai.com/v1"
         )
         base_url = os.getenv("BASE_URL", default_url).strip() or default_url
         model = os.getenv("MODEL", cls.model).strip() or cls.model
