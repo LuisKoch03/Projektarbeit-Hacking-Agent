@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Oberflächenentwurf für den Projektarbeit Hacking Agent">
+    <title>Hacking Agent</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!--
+    Später setzt JavaScript hier entweder:
+    data-agent-state="working"  = laufende Sicherheitsanalyse
+    data-agent-state="safe"     = Schutz-, Ergebnis- und Hilfemodus
+-->
+<body data-agent-state="safe">
+    <div class="ambient-grid" aria-hidden="true"></div>
+
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Hauptnavigation">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">
+                    <span>&gt;_</span>
+                </div>
+                <div>
+                    <p class="brand-name">Hacking Agent</p>
+                    <p class="brand-caption">Defensive Security Workspace</p>
+                </div>
+            </div>
+
+            <button class="new-chat-button" type="button">
+                <span aria-hidden="true">＋</span>
+                Neuer Chat
+            </button>
+
+            <nav class="navigation">
+                <p class="navigation-label">Arbeitsbereich</p>
+
+                <a class="navigation-link active" href="#chat" aria-current="page">
+                    <span class="navigation-icon" aria-hidden="true">⌁</span>
+                    Chat
+                </a>
+
+                <div class="chat-list" aria-label="Gespeicherte Chats">
+                    <a class="chat-entry current" href="#chat">
+                        <span class="chat-entry-title">Analyse des Testservers</span>
+                        <span class="chat-entry-date">Heute</span>
+                    </a>
+                    <a class="chat-entry" href="#chat-docker">
+                        <span class="chat-entry-title">Docker-Umgebung prüfen</span>
+                        <span class="chat-entry-date">Gestern</span>
+                    </a>
+                    <a class="chat-entry" href="#chat-zap">
+                        <span class="chat-entry-title">ZAP-Scan vorbereiten</span>
+                        <span class="chat-entry-date">18. Nov.</span>
+                    </a>
+                </div>
+
+                <a class="navigation-link tools-link" href="#tools">
+                    <span class="navigation-icon" aria-hidden="true">◇</span>
+                    Werkzeuge
+                    <span class="navigation-arrow" aria-hidden="true">›</span>
+                </a>
+
+                <div class="tool-list" aria-label="Verfügbare Werkzeuge">
+                    <a class="tool-entry" href="#tools">
+                        <span>Nmap</span>
+                        <span class="tool-state inactive">Inaktiv</span>
+                    </a>
+                    <a class="tool-entry" href="#tools">
+                        <span>OWASP ZAP</span>
+                        <span class="tool-state inactive">Inaktiv</span>
+                    </a>
+                    <a class="tool-entry" href="#tools">
+                        <span>Hashcat</span>
+                        <span class="tool-state inactive">Inaktiv</span>
+                    </a>
+                </div>
+
+                <a class="navigation-link" href="#project">
+                    <span class="navigation-icon" aria-hidden="true">▣</span>
+                    Projektbeschreibung
+                </a>
+            </nav>
+
+            <div class="sidebar-security">
+                <span class="sidebar-security-icon" aria-hidden="true">◆</span>
+                <div>
+                    <strong>Defensive Ausrichtung</strong>
+                    <span>Nur autorisierte Systeme</span>
+                </div>
+            </div>
+
+            <a class="settings-link" id="settings" href="#settings">
+                <span aria-hidden="true">⚙</span>
+                Einstellungen
+            </a>
+        </aside>
+
+        <main class="main-content" id="chat">
+            <header class="topbar">
+                <div class="session-heading">
+                    <div class="session-label-row">
+                        <p class="eyebrow">Aktive Sitzung</p>
+                        <span class="auto-title-badge">Automatisch benannt</span>
+                    </div>
+                    <h1>Analyse des Testservers</h1>
+                </div>
+
+                <div class="topbar-status" aria-label="Systemstatus">
+                    <div class="agent-mode" aria-live="polite">
+                        <span class="mode-symbol safe-state" aria-hidden="true">◆</span>
+                        <span class="mode-symbol working-state" aria-hidden="true">&gt;_</span>
+                        <span class="safe-state">Schutzmodus</span>
+                        <span class="working-state">Analyse läuft</span>
+                    </div>
+
+                    <div class="connection-state">
+                        <span class="status-dot online" aria-hidden="true"></span>
+                        <span>Ollama</span>
+                    </div>
+                    <div class="connection-state">
+                        <span class="status-dot online" aria-hidden="true"></span>
+                        <span>Docker</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="conversation" aria-label="Chatverlauf">
+                <section class="welcome-card" aria-labelledby="welcome-title">
+                    <div class="welcome-emblem" aria-hidden="true">
+                        <svg viewBox="0 0 64 72" role="img">
+                            <path d="M32 3 58 13v20c0 18-11 30-26 36C17 63 6 51 6 33V13L32 3Z"></path>
+                            <path d="m21 35 7 7 16-18"></path>
+                        </svg>
+                        <span class="emblem-terminal">&gt;_</span>
+                    </div>
+
+                    <div class="welcome-content">
+                        <p class="eyebrow">Sicher analysieren. Verständlich handeln.</p>
+                        <h2 id="welcome-title">Wobei kann ich dich unterstützen?</h2>
+                        <p>
+                            Ich unterstütze dich bei autorisierten Sicherheitsanalysen,
+                            erkläre Ergebnisse verständlich und helfe dir, deine Systeme
+                            anschließend besser zu schützen.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="mode-panel" aria-label="Aktueller Agentenzustand">
+                    <div class="mode-panel-visual" aria-hidden="true">
+                        <div class="shield-rings">
+                            <div class="shield-core">
+                                <span class="safe-state">◆</span>
+                                <span class="working-state">&gt;_</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mode-panel-copy safe-state">
+                        <p class="mode-kicker">Schutzphase</p>
+                        <h3>Analyse abgeschlossen – System im Blick</h3>
+                        <p>
+                            Der Agent wartet auf deine nächste Frage und stellt Schutz,
+                            Einordnung und konkrete Empfehlungen in den Vordergrund.
+                        </p>
+                    </div>
+
+                    <div class="mode-panel-copy working-state">
+                        <p class="mode-kicker">Analysephase</p>
+                        <h3>Sicherheitsanalyse wird ausgeführt</h3>
+                        <p>
+                            Der Agent verarbeitet ausschließlich den bestätigten Auftrag.
+                            Aktivitäten und Ergebnisse werden nachvollziehbar protokolliert.
+                        </p>
+                    </div>
+
+                    <div class="mode-signal" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </section>
+
+                <section class="project-card" id="project" aria-labelledby="project-title">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Über das Projekt</p>
+                            <h3 id="project-title">Was ist der Hacking Agent?</h3>
+                        </div>
+                        <span class="project-label">Projektarbeit</span>
+                    </div>
+
+                    <p class="project-description">
+                        Der Hacking Agent ist eine lokale Desktop-Anwendung für
+                        nachvollziehbare und autorisierte Sicherheitsanalysen. Ein
+                        Sprachmodell unterstützt bei Planung und Auswertung, während
+                        isolierte Werkzeuge gezielte technische Prüfungen übernehmen.
+                    </p>
+
+                    <div class="project-principles">
+                        <div class="principle">
+                            <span class="principle-number">01</span>
+                            <div>
+                                <strong>Lokal kontrolliert</strong>
+                                <span>Modell und Werkzeuge bleiben in deiner Umgebung.</span>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <span class="principle-number">02</span>
+                            <div>
+                                <strong>Explizit bestätigt</strong>
+                                <span>Aktive Prüfungen starten nicht ohne Freigabe.</span>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <span class="principle-number">03</span>
+                            <div>
+                                <strong>Defensiv gedacht</strong>
+                                <span>Ergebnisse führen zu verständlichen Schutzmaßnahmen.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="message-row user-message">
+                    <div class="message-bubble">
+                        Prüfe bitte, welche Dienste auf meinem Testserver laufen.
+                    </div>
+                    <div class="avatar user-avatar" aria-label="Benutzer">DU</div>
+                </div>
+
+                <div class="message-row agent-message">
+                    <div class="avatar agent-avatar" aria-label="Hacking Agent">&gt;_</div>
+                    <div class="message-content">
+                        <div class="message-meta">
+                            <strong>Hacking Agent</strong>
+                            <span>Gerade eben</span>
+                        </div>
+                        <div class="message-bubble">
+                            Gern. Bevor ich eine Analyse vorbereite, benötige ich die
+                            Zieladresse und deine Bestätigung, dass du das System besitzt
+                            oder ausdrücklich testen darfst.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tools-view" id="tools" aria-labelledby="tools-title">
+                <div class="tools-heading">
+                    <div>
+                        <p class="eyebrow">Werkzeugbereich</p>
+                        <h2 id="tools-title">Sicherheitswerkzeuge</h2>
+                        <p>
+                            Werkzeuge werden erst nach Auswahl, Konfiguration und einer
+                            eindeutigen Freigabe gestartet.
+                        </p>
+                    </div>
+                    <span class="tools-counter">0 / 3 aktiv</span>
+                </div>
+
+                <div class="tools-grid">
+                    <article class="tool-card" id="tools-nmap">
+                        <div class="tool-card-topline">
+                            <span class="tool-code">NMAP</span>
+                            <span class="tool-state inactive">Inaktiv</span>
+                        </div>
+                        <h3>Netzwerkanalyse</h3>
+                        <p>Untersucht freigegebene Hosts, Ports und erreichbare Dienste.</p>
+                        <button type="button">Werkzeug öffnen</button>
+                    </article>
+
+                    <article class="tool-card" id="tools-zap">
+                        <div class="tool-card-topline">
+                            <span class="tool-code">ZAP</span>
+                            <span class="tool-state inactive">Inaktiv</span>
+                        </div>
+                        <h3>Webanalyse</h3>
+                        <p>Prüft autorisierte Webanwendungen passiv oder nach Bestätigung aktiv.</p>
+                        <button type="button">Werkzeug öffnen</button>
+                    </article>
+
+                    <article class="tool-card" id="tools-hashcat">
+                        <div class="tool-card-topline">
+                            <span class="tool-code">HASHCAT</span>
+                            <span class="tool-state inactive">Inaktiv</span>
+                        </div>
+                        <h3>Passwort-Audit</h3>
+                        <p>Analysiert bereitgestellte Test-Hashes in einer kontrollierten Umgebung.</p>
+                        <button type="button">Werkzeug öffnen</button>
+                    </article>
+                </div>
+
+                <div class="authorization-notice">
+                    <span aria-hidden="true">◆</span>
+                    <div>
+                        <strong>Autorisierung erforderlich</strong>
+                        <p>Kein Werkzeug startet automatisch oder ohne einen bestätigten Auftrag.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="composer-area">
+                <form class="composer">
+                    <label class="visually-hidden" for="message">Nachricht</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="1"
+                        placeholder="Nachricht an den Hacking Agent …"
+                    ></textarea>
+                    <button class="send-button" type="submit" aria-label="Nachricht senden">
+                        <span aria-hidden="true">↑</span>
+                    </button>
+                </form>
+                <p class="composer-hint">
+                    Nur eigene oder ausdrücklich freigegebene Systeme prüfen.
+                </p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
