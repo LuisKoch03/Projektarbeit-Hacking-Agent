@@ -4,5 +4,10 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+build/
+dist/
+*.spec
+*.zip
+*.tar
 wordlists/
 hashcat-work/
